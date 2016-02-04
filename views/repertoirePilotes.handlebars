@@ -1,18 +1,17 @@
 <div>
 	<span> Cliquez sur une lettre : </span>
 	{{#each listeLettres}}
-		<span>
-	      <a href="/repertoirePilote/{{this.lettre}}"> {{this.lettre}}</a>
-	    </span>
-	{{/each}}
-</div>
-{{#if listePilotes}}
-	<div>
-	{{#each listePilotes}}
-		<span>
-			{{this.pilnom}} {{this.pilprenom}}
-		</span>
-		<br/>
+	<span>
+		<a href="/repertoirePilote/{{lettre}}"> {{lettre}}</a>
+	</span>
 	{{/each}}
 	</div>
-{{/if}}
+	<br/>
+	{{#if listePilotes}}
+		{{#each listePilotes}}
+		<div class="pilote-wrapper">
+			<img src="/image/pilote/{{this.phoadresse}}" alt="Pilote de F1">
+			<p>{{this.pilnom}} {{this.pilprenom}}</p>
+		</div>
+		{{/each}}
+	{{/if}}

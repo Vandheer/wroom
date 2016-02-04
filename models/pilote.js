@@ -13,7 +13,7 @@ module.exports.getPiloteByLettre =   function (data, callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						var sql ="SELECT pilnom, pilprenom FROM pilote WHERE pilnom LIKE \'" + data + "%\'";
+						var sql ="SELECT pilnom, pilprenom, phoadresse FROM pilote p INNER JOIN photo ph ON ph.pilnum = p.pilnum WHERE pilnom LIKE \'" + data + "%\'";
 						//console.log (sql);
             connexion.query(sql, callback);
 

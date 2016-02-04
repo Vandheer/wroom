@@ -12,9 +12,7 @@ module.exports.Repertoire = 	function(request, response){
             console.log(err);
             return;
         }
-        response.listeLettres = result;
-
-
+      response.listeLettres = result;
       response.render('repertoirePilotes', response);
 	});
 }
@@ -23,15 +21,15 @@ module.exports.ListePilotes = 	function(request, response){
 	response.title = 'Liste des pilotes';
 
 	var lettre = request.params.lettre;
-	async.series([
+	async.parallel([
 		function(callback){
 			model.getPiloteByLettre(lettre, function (err, result) {
 		        if (err) {
 		            // gestion de l'erreur
-		            console.log(err);
+                console.log(err);
 		            return;
 		        }
-		        response.listePilotes = result;
+            callback(null, result);
 			});
 		},
 
@@ -42,11 +40,16 @@ module.exports.ListePilotes = 	function(request, response){
 		            console.log(err);
 		            return;
 		        }
-		        response.listeLettres = result;
+            callback(null, result);
 			});
 		}
 	], function (err, result){
-		console.log('fin', resultat);
+		if(err){
+      console.log(err);
+      return;
+    }
+    response.listeLettres = result[1];
+    response.listePilotes = result[0];
+    response.render('repertoirePilotes', response);
 	});
-	response.render('repertoirePilotes', response);
 }

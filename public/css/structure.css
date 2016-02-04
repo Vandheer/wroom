@@ -40,6 +40,7 @@
     text-align: center;
   }
   #LogoNode {
+      padding-top: 10px;
       max-height: 20%;
       max-width: 20%;
   }
@@ -57,4 +58,44 @@
  a  {
  	text-decoration:none;
  	color:#0072ff;
+ }
+ .pilote-wrapper img{
+   width: 100px;
+   height: 100px;
+ }
+
+ .pilote-wrapper{
+   margin: 0 auto;
+   text-align: center;
+   display: inline-block;
+   width: 150px;
+ }
+ #footer hr{
+   border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0));
+ }
+
+ /* ZONE DE TEST */
+
+ #test123{
+   width: 160px;
+ }
+
+ .hr-bgswag{
+   text-align: center;
+   width: 166px;
+ }
+
+ .hr-bgswag hr{
+   margin-top: 0px;
+   border: 0;
+   height: 2px;
+   background-image: linear-gradient(to right, rgba(42,173,222,.76), rgb(1,144,214), rgba(42,173,222,.76));
+   width: 0;
+   transition: width 5s ease;
+ }
+
+ .hr-bgswag:hover hr{
+   width: auto;
  }

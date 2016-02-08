@@ -11,7 +11,12 @@
 		{{#each listePilotes}}
 		<div class="pilote-wrapper">
 			<img src="/image/pilote/{{this.phoadresse}}" alt="Pilote de F1">
-			<p>{{this.pilnom}} {{this.pilprenom}}</p>
+			<a href="/repertoirePilote/{{lettre}}/{{this.pilnum}}"> <p>{{this.pilnom}} {{this.pilprenom}}</p> </a>
 		</div>
+		{{/each}}
+	{{/if}}
+	{{#if detailsPilote}}
+		{{#each detailsPilote}}
+			Nom : {{this.pilnom}}
 		{{/each}}
 	{{/if}}

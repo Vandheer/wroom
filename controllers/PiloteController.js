@@ -43,6 +43,7 @@ module.exports.ListePilotes = 	function(request, response){
             callback(null, result);
 			});
 		}
+
 	], function (err, result){
 		if(err){
       console.log(err);
@@ -50,6 +51,45 @@ module.exports.ListePilotes = 	function(request, response){
     }
     response.listeLettres = result[1];
     response.listePilotes = result[0];
+    response.render('repertoirePilotes', response);
+	});
+};
+
+module.exports.DetailsPilote = function(request, response){
+	response.title = 'Détails du pilote';
+
+	var lettre = request.params.lettre;
+	var pilnum = request.params.pilnum;
+	async.series([
+		function(callback){
+			model.getLettresUtilises( function (err, result) {
+		        if (err) {
+		            // gestion de l'erreur
+		            console.log(err);
+		            return;
+		        }
+            callback(null, result);
+			});
+		},
+
+		function(callback){
+			model.getDetailsPilote(pilnum, function (err, result) {
+		        if (err) {
+		            // gestion de l'erreur
+		            console.log(err);
+		            return;
+		        }
+            callback(null, result);
+			});
+		}
+
+	], function (err, result){
+		if(err){
+      console.log(err);
+      return;
+    }
+    response.listeLettres = result[0];
+    response.detailsPilote = result[1];
     response.render('repertoirePilotes', response);
 	});
 };

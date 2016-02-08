@@ -77,7 +77,7 @@
  }
 
  /* ZONE DE TEST */
-
+/*
  #test123{
    width: 160px;
  }
@@ -93,9 +93,11 @@
    height: 2px;
    background-image: linear-gradient(to right, rgba(42,173,222,.76), rgb(1,144,214), rgba(42,173,222,.76));
    width: 0;
-   transition: width 5s ease;
+   max-width: 166px;
+   transition: width 2s linear;
  }
 
  .hr-bgswag:hover hr{
-   width: auto;
+   width: 160px;
  }
+*/

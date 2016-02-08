@@ -52,4 +52,4 @@ module.exports.ListePilotes = 	function(request, response){
     response.listePilotes = result[0];
     response.render('repertoirePilotes', response);
 	});
-}
+};

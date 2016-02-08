@@ -16,6 +16,7 @@ module.exports = function(app){
 
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
+   app.get('/circuits/:cirnum', CircuitController.DetailsCircuit);
 
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);

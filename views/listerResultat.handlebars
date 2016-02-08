@@ -1,1 +1,26 @@
-<h1> Coucou </h1>
+    <h1>Résultats</h1>
+    <br class="myboth" />
+    {{#if listeResultat}}
+      <table class="tablestyle">
+        <tr>
+          <th>Place</th>
+          <th>Pilote</th>
+          <th>Temps</th>
+          <th>Nb points</th>
+        <tr>
+      {{#each listeResultat}}
+        <tr>
+          <td>{{@index}}</td>
+          <td>{{this.pilnom}} {{this.pilprenom}}</td>
+          <td>{{this.tempscourse}}</td>
+          <td></td>
+        </tr>
+      {{/each}}
+    {{/if}}
+    <table class="tabpayscir">
+    	 {{#each listeGrandPrix}}
+    		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+          <a href="/resultats/{{this.gpnum}}"> {{this.gpnom}}</a>
+        </td></tr>
+     {{/each}}
+    </table>

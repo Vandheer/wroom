@@ -7,6 +7,11 @@
     	text-align: center;
     	color: #000000;
     }
+
+    .tablestyle{
+      border: 1px collapse black;
+    }
+
     .monBody #container {
     	width: 900px;
     	margin: 0 auto;
@@ -24,6 +29,7 @@
     }
   .monBody #contenu {
 		 padding:20px;
+     padding-bottom: 20px;
     }
     .monBody #footer {
     padding: 0 10px;
@@ -44,12 +50,12 @@
       max-height: 20%;
       max-width: 20%;
   }
+
   .tabpayscir  {
- 	  float:right;
+    float: right;
  	  padding:10px;
  	  border:1px solid black;
  	  margin:10px;
-    position: relative;
  	  -moz-border-radius:15px;
  	  border-radius:15px;
  }
@@ -88,11 +94,14 @@
  .circuitimg{
    width: 250px;
    height: 250px;
+   padding-right: 10px;
  }
 
- .inline p{
-   width: 500px;
+ #wrapper{
+   display: flex;
+   justify-content: space-between;
  }
+
 
  /* ZONE DE TEST */
 /*

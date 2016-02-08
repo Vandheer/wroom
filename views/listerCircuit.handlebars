@@ -1,31 +1,39 @@
 <h1>Liste des circuits enregistrés</h1>
-<span class="inline">
-<table class="tabpayscir">
-	 {{#each listeCircuit}}
-		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-      <a href="/circuits/{{this.cirnum}}"> {{this.cirnom}}</a>
-    </td></tr>
- {{/each}}
-</table>
-</span>
-<br class="myboth" />
+<div id="wrapper">
+	{{#if detailsCircuit}}
+	  {{#each detailsCircuit}}
+	  <div>
+	    <img src="/image/circuit/{{this.ciradresseimage}}" alt="image du circuit" class="circuitimg" />
+		</div>
+		<div>
+	    <div>
+	      <b>Nom: </b> {{this.cirnom}}
+	    </div>
+	    <div>
+	      <b>Longueur: </b>{{this.cirlongueur}} m
+	    </div>
+	    <div>
+	      <b>Nombre de spectateurs: </b>{{this.cirnbspectateurs}}
+	    </div>
+	    <div>
+	      <b>Pays: </b>{{this.paynom}}
+	    </div>
+	  </div>
+	  {{/each}}
+	{{/if}}
+	<div>
+	<table class="tabpayscir">
+		 {{#each listeCircuit}}
+			<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+	      <a href="/circuits/{{this.cirnum}}"> {{this.cirnom}}</a>
+	    </td></tr>
+	 {{/each}}
+	</table>
+	<br class="myboth"/>
+	</div>
+</div>
 {{#if detailsCircuit}}
-  {{#each detailsCircuit}}
-  <span class="inline">
-    <img src="/image/circuit/{{this.ciradresseimage}}" alt="image du circuit" class="circuitimg" />
-    <div>
-      <b>Nom: </b> {{this.cirnom}}
-    </div>
-    <div>
-      <b>Longueur: </b>{{this.cirlongueur}} m
-    </div>
-    <div>
-      <b>Nombre de spectateurs: </b>{{this.cirnbspectateurs}}
-    </div>
-    <div>
-      <b>Pays: </b>{{this.paynom}}
-    </div>
-    <p>{{this.cirtext}}</p>
-  </span>
-  {{/each}}
+	{{#each detailsCircuit}}
+	    <p id="desccircuit">{{this.cirtext}}</p>
+	{{/each}}
 {{/if}}

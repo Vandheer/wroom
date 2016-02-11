@@ -8,8 +8,34 @@
     	color: #000000;
     }
 
-    .tablestyle{
-      border: 1px collapse black;
+    .tablestyle td,.tablestyle th,.tablestyle tr{
+      border: 1px solid black;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .tablestyle th{
+      font-weight: bold;
+    }
+
+    #infosres{
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    #infosres p{
+      margin-bottom: 2px;
+    }
+
+    .listeLettres{
+      text-align: center;
+      width: auto;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .listeLettres span{
+      margin: 5px 3px 5px 3px;
     }
 
     .monBody #container {
@@ -60,9 +86,13 @@
  	  border-radius:15px;
  }
 
+ .tabpayscir a{
+   position: relative;
+   bottom: 10px;
+ }
+
  .tabpayscir img{
    position: relative;
-   top: 10px;
    width: 32px;
    height: 32px;
  }
@@ -74,17 +104,22 @@
  	text-decoration:none;
  	color:#0072ff;
  }
+
+ a:hover{
+   text-decoration: underline;
+ }
  .pilote-wrapper img{
    width: 100px;
    height: 100px;
  }
 
  .pilote-wrapper{
-   margin: 0 auto;
+   margin: auto;
    text-align: center;
    display: inline-block;
    width: 150px;
  }
+
  #footer hr{
    border: 0;
    height: 1px;
@@ -102,29 +137,35 @@
    justify-content: space-between;
  }
 
-
- /* ZONE DE TEST */
-/*
- #test123{
-   width: 160px;
+ #derniersResultats{
+   display: inline-block;
+   margin-left: auto;
+   margin-right: auto;
+   border: 1px solid black;
+   border-radius: 5px;
  }
 
- .hr-bgswag{
+ #derniersResultats:nth-child(1){
+   padding-left: 7px;
+   padding-right: 7px;
+   padding-bottom: 5px;
+ }
+
+ #derniersResultats p:first-of-type{
    text-align: center;
-   width: 166px;
+   text-decoration: underline;
  }
 
- .hr-bgswag hr{
+ #derniersResultats p:first-of-type + p{
+   font-weight: bold;
+   margin-bottom: 0px;
+ }
+
+ #derniersResultats p:first-of-type + p + p{
    margin-top: 0px;
-   border: 0;
-   height: 2px;
-   background-image: linear-gradient(to right, rgba(42,173,222,.76), rgb(1,144,214), rgba(42,173,222,.76));
-   width: 0;
-   max-width: 166px;
-   transition: width 2s linear;
+   margin-bottom: 0px;
  }
 
- .hr-bgswag:hover hr{
-   width: 160px;
+ #derniersResultats a:first-of-type{
+   margin-bottom: 5px;
  }
-*/

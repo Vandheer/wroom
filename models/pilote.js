@@ -11,10 +11,9 @@ module.exports.getPiloteByLettre =   function (data, callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-        	  // s'il n'y a pas d'erreur de connexion
-        	  // execution de la requête SQL
-						var sql ="SELECT p.pilnum, pilnom, pilprenom, phoadresse FROM pilote p RIGHT JOIN photo ph ON ph.pilnum = p.pilnum WHERE pilnom LIKE \'" + data + "%\' GROUP BY pilnum";
-						//console.log (sql);
+        	  // Requête en mémoire à Jonathan
+						//var sql ="SELECT p.pilnum, pilnom, pilprenom, phoadresse FROM pilote p INNER JOIN photo ph ON ph.pilnum = p.pilnum WHERE pilnom LIKE \'" + data + "%\' GROUP BY pilnum";
+						var sql ="SELECT p.pilnum, pilnom, pilprenom, phoadresse FROM pilote p INNER JOIN photo ph ON ph.pilnum = p.pilnum WHERE pilnom LIKE \'" + data + "%\' AND phonum = 1";
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

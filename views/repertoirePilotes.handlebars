@@ -1,10 +1,10 @@
-<div>
-	<span> Cliquez sur une lettre : </span>
-	{{#each listeLettres}}
-	<span>
-		<a href="/repertoirePilote/{{lettre}}"> {{lettre}}</a>
-	</span>
-	{{/each}}
+	<div class="listeLettres">
+		<span> Cliquez sur une lettre : </span>
+		{{#each listeLettres}}
+		<span>
+			<a href="/repertoirePilote/{{lettre}}"> {{lettre}}</a>
+		</span>
+		{{/each}}
 	</div>
 	<br/>
 	{{#if listePilotes}}

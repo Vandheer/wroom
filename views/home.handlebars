@@ -1,6 +1,12 @@
-<!-- <h1>Formulaire pour essayer de faire des choses avec des hr</h1>
-<p>Passer le curseur sur le champ pour admirer une animation css (qui ne fonctionne pas comme prévu)</p>
-<div class="hr-bgswag">
-<input type="field" id="test123">
-<hr />
-</div> -->
+    {{#if derniersResultats}}
+      {{#each derniersResultats}}
+      <div id="wrapper">
+        <div id="derniersResultats">
+          <p>DERNIERS RESULTATS</p>
+          <p>{{this.gpnom}} du {{this.gpdate}}</p>
+          <p>Mise à jour le: {{this.gpdatemaj}}</p>
+          <a href="/resultats/{{this.gpnum}}">Voir les résultats</a>
+        </div>
+      </div>
+      {{/each}}
+    {{/if}}

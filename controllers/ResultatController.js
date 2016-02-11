@@ -42,6 +42,16 @@ module.exports.AfficherResultat = function(request, response){
 			});
 		},
 		function(callback){
+			model.getPoints(function (err, result) {
+						if (err) {
+								// gestion de l'erreur
+								console.log(err);
+								return;
+						}
+						callback(null, result);
+			});
+		},
+		function(callback){
 			model.getInfosGrandPrix(gpnum, function (err, result) {
 						if (err) {
 								// gestion de l'erreur
@@ -56,9 +66,22 @@ module.exports.AfficherResultat = function(request, response){
       console.log(err);
       return;
     }
-    response.listeGrandPrix = result[1];
-    response.listeResultat = result[0];
-		response.infosGrandPrix = result[2];
+
+		var listeTemps = result[1];
+		var listePoints = result[2];
+
+		for(var i=0;i<listeTemps.length;i++){
+				listeTemps[i].place = i + 1;
+				if(i<10){
+					listeTemps[i].points = listePoints[i].ptnbpointsplace;
+			 	}else{
+					listeTemps[i].points = 0;
+				}
+		}
+
+    response.listeGrandPrix = result[0];
+    response.listeResultat = listeTemps;
+		response.infosGrandPrix = result[3];
     response.render('listerResultat', response);
 	});
 }

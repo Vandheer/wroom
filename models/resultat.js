@@ -47,8 +47,40 @@ module.exports.getInfosGrandPrix = function (gpnum, callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						var sql ="SELECT gpcommentaire, gpdate FROM grandprix WHERE gpnum = "+gpnum;
+						var sql ="SELECT gpcommentaire, DATE_FORMAT(gpdate,\'%d/%m/%Y\') AS gpdate, gpnom, g.cirnum, cirnom FROM grandprix g INNER JOIN circuit c ON c.cirnum=g.cirnum "
+						+ "WHERE gpnum = "+gpnum;
 						//console.log (sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+         }
+      });
+};
+
+module.exports.getPoints = function (callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+        	  // s'il n'y a pas d'erreur de connexion
+        	  // execution de la requête SQL
+						var sql ="SELECT ptnbpointsplace FROM points ORDER BY ptplace ASC";
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+         }
+      });
+};
+
+module.exports.getDerniersResultats = function (callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+        	  // s'il n'y a pas d'erreur de connexion
+        	  // execution de la requête SQL
+						var sql ="SELECT gpnum, gpnom, DATE_FORMAT(gpdate,'%d/%m/%Y') AS gpdate, DATE_FORMAT(gpdatemaj,'%d/%m/%Y') AS gpdatemaj "
+						+  "FROM grandprix ORDER BY gpdatemaj DESC LIMIT 1";
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

@@ -1,6 +1,6 @@
 <h1>Liste des circuits enregistrés</h1>
+{{#if detailsCircuit}}
 <div id="wrapper">
-	{{#if detailsCircuit}}
 	  {{#each detailsCircuit}}
 	  <div>
 	    <img src="/image/circuit/{{this.ciradresseimage}}" alt="image du circuit" class="circuitimg" />
@@ -20,7 +20,7 @@
 	    </div>
 	  </div>
 	  {{/each}}
-	{{/if}}
+{{/if}}
 	<div>
 	<table class="tabpayscir">
 		 {{#each listeCircuit}}
@@ -31,9 +31,10 @@
 	</table>
 	<br class="myboth"/>
 	</div>
-</div>
 {{#if detailsCircuit}}
+</div>
 	{{#each detailsCircuit}}
 	    <p id="desccircuit">{{this.cirtext}}</p>
 	{{/each}}
 {{/if}}
+<br class="myboth" />

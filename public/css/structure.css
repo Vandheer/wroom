@@ -114,7 +114,6 @@
  }
 
  .pilote-wrapper{
-   margin: auto;
    text-align: center;
    display: inline-block;
    width: 150px;
@@ -132,7 +131,7 @@
    padding-right: 10px;
  }
 
- #wrapper{
+ .wrapper{
    display: flex;
    justify-content: space-between;
  }

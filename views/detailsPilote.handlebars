@@ -1,0 +1,41 @@
+    {{#if listeLettres}}
+      <div class="listeLettres">
+    		<span> Cliquez sur une lettre : </span>
+    		{{#each listeLettres}}
+    		<span>
+    			<a href="/repertoirePilote/{{lettre}}"> {{lettre}}</a>
+    		</span>
+    		{{/each}}
+    	</div>
+    {{/if}}
+    {{#if detailsPilote}}
+    <div class="wrapper">
+      {{#each photoPrincipale}}
+        <div class="pilote-wrapper">
+          <img src="/image/pilote/{{this.phoadresse}}" alt="Pilote de F1">
+        </div>
+      {{/each}}
+      {{#each detailsPilote}}
+        <div>
+          <p><b>Nom: </b>{{this.pilnom}} {{this.pilprenom}}</p>
+          <p><b>Date de naissance: </b>{{this.pildatenais}}</p>
+          <p><b>Nationalité: </b>{{this.paynom}}</p>
+          <p><b>Ecurie: </b>
+        </div>
+      <div>
+      <p><b>Poids: </b>{{this.pilpoids}} Kg</p>
+      <p><b>Taille: </b>{{this.piltaille}} Cm</p>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{#if listeSponsors}}
+      {{#each listeSponsors}}
+        <p><b>{{this.sponom}}</b> ({{this.sposectactivite}})</p>
+      {{/each}}
+    {{/if}}
+    {{#if detailsPilote}}
+      {{#each detailsPilote}}
+      <p>{{this.piltexte}}</p>
+      {{/each}}
+    {{/if}}

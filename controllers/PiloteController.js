@@ -60,6 +60,28 @@ function getPhotoPrincipaleByPilote(pilnum, callback){
   });
 }
 
+// Photos du pilote
+function getPhotosByPilote(pilnum, callback){
+  pilote.getPhotosByPilote(pilnum, function(err, result){
+    if(err){
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+}
+
+// Ecurie du pilote
+function getEcurieByPilote(pilnum, callback){
+  pilote.getEcurieByPilote(pilnum, function(err, result){
+    if(err){
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+}
+
 // ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
 
 module.exports.Repertoire = 	function(request, response){
@@ -107,15 +129,20 @@ module.exports.DetailsPilote = function(request, response){
     async.apply(getDetailsPilote,pilnum),
     async.apply(getSponsorsByPilnum, pilnum),
     async.apply(getPhotoPrincipaleByPilote, pilnum),
+    async.apply(getPhotosByPilote, pilnum),
+    async.apply(getEcurieByPilote, pilnum)
   ], function (err, result){
     if(err){
       console.log(err);
       return;
     }
+    console.log(result);
     response.listeLettres = result[0];
-    response.detailsPilote = result[1];
+    response.detailsPilote = result[1][0];
     response.listeSponsors = result[2];
-    response.photoPrincipale = result[3];
+    response.photoPrincipale = result[3][0];
+    response.photos = result[4];
+    response.ecurie = result[5][0];
     response.render('detailsPilote', response);
   });
 };

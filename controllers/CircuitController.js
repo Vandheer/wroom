@@ -53,7 +53,7 @@ module.exports.DetailsCircuit = function(request, response){
       return;
     }
     response.listeCircuit = result[0];
-    response.detailsCircuit = result[1];
+    response.detailsCircuit = result[1][0];
     response.render('ListerCircuit', response);
   });
 };

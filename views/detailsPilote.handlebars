@@ -10,32 +10,35 @@
     {{/if}}
     {{#if detailsPilote}}
     <div class="wrapper">
-      {{#each photoPrincipale}}
         <div class="pilote-wrapper">
-          <img src="/image/pilote/{{this.phoadresse}}" alt="Pilote de F1">
+          <img src="/image/pilote/{{photoPrincipale.phoadresse}}" alt="Pilote de F1">
         </div>
-      {{/each}}
-      {{#each detailsPilote}}
         <div>
-          <p><b>Nom: </b>{{this.pilnom}} {{this.pilprenom}}</p>
-          <p><b>Date de naissance: </b>{{this.pildatenais}}</p>
-          <p><b>Nationalité: </b>{{this.paynom}}</p>
-          <p><b>Ecurie: </b>
-        </div>
+          <p><b>Nom: </b>{{detailsPilote.pilnom}} {{detailsPilote.pilprenom}}</p>
+          <p><b>Date de naissance: </b>{{detailsPilote.pildatenais}}</p>
+          <p><b>Nationalité: </b>{{detailsPilote.paynom}}</p>
+      {{#if ecurie}}
+          <p><b>Ecurie: </b> {{ecurie.ecunom}} </p>
+      {{/if}}        </div>
       <div>
-      <p><b>Poids: </b>{{this.pilpoids}} Kg</p>
-      <p><b>Taille: </b>{{this.piltaille}} Cm</p>
+        <p><b>Poids: </b>{{detailsPilote.pilpoids}} Kg</p>
+        <p><b>Taille: </b>{{detailsPilote.piltaille}} Cm</p>
       </div>
-      {{/each}}
     </div>
     {{/if}}
     {{#if listeSponsors}}
+      <span> <b> Principaux sponsors : </b> </span>
       {{#each listeSponsors}}
         <p><b>{{this.sponom}}</b> ({{this.sposectactivite}})</p>
       {{/each}}
     {{/if}}
     {{#if detailsPilote}}
-      {{#each detailsPilote}}
-      <p>{{this.piltexte}}</p>
-      {{/each}}
+      <p>{{detailsPilote.piltexte}}</p>
+    {{/if}}
+    {{#if photos}}
+      <div class="wrapper">
+        {{#each photos}}
+        <div><img src="/image/pilote/{{this.phoadresse}}" alt="pilote de f1" class="imgpil"/></div>
+        {{/each}}
+      </div>
     {{/if}}

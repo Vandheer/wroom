@@ -66,10 +66,21 @@ module.exports.getPhotoPrincipaleByPilote = function (pilnum, callback) {
 
 // ////////////////////// A U T R E S   P H O T O S   D ' U N   P I L O T E
 
-module.exports.getPhotosByPilnum = function (pilnum, callback) {
+module.exports.getPhotosByPilote = function (pilnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
 			var sql ="SELECT phoadresse FROM photo WHERE pilnum = " + pilnum + " AND phonum != 1";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+// ////////////////////// E C U R I E   D ' U N   P I L O T E
+module.exports.getEcurieByPilote = function (pilnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="SELECT ecunom FROM ecurie e INNER JOIN pilote p ON e.ecunum=p.ecunum WHERE pilnum =" + pilnum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

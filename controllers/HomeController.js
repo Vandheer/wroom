@@ -8,7 +8,7 @@ module.exports.Index = function(request, response){
       console.log(err);
       return;
     }
-    response.derniersResultats = result;
+    response.derniersResultats = result[0];
     response.render('home', response);
   });
 };

@@ -1,11 +1,9 @@
     <h1>Résultats</h1>
     {{#if listeResultat}}
-      {{#each infosGrandPrix}}
       <div id="infosres">
-      <p>{{this.gpnom}} ({{this.gpdate}})</p>
-      <a href="/circuits/{{this.cirnum}}">Circuit de {{this.cirnom}}</a>
+      <p>{{infosGrandPrix.gpnom}} ({{infosGrandPrix.gpdate}})</p>
+      <a href="/circuits/{{infosGrandPrix.cirnum}}">Circuit de {{infosGrandPrix.cirnom}}</a>
       </div>
-      {{/each}}
     <div class="wrapper">
       <div>
         <table class="tablestyle">
@@ -37,8 +35,6 @@
     {{#if listeResultat}}
       </div>
     </div>
-    {{#each infosGrandPrix}}
-      <p>{{this.gpcommentaire}}</p>
-    {{/each}}
+      <p>{{infosGrandPrix.gpcommentaire}}</p>
     {{/if}}
     <br class="myboth" />

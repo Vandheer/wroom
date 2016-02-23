@@ -77,7 +77,6 @@ module.exports.AfficherResultat = function(request, response){
 			return;
 		}
 
-		console.log(result[2]);
 		var listeTemps = result[1];
 		var listePoints = result[3];
 
@@ -92,7 +91,7 @@ module.exports.AfficherResultat = function(request, response){
 
 		response.listeGrandPrix = result[0];
 		response.listeResultat = listeTemps;
-		response.infosGrandPrix = result[2];
+		response.infosGrandPrix = result[2][0];
 		response.render('listerResultat', response);
 	});
 }

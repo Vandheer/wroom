@@ -1,25 +1,23 @@
 <h1>Liste des circuits enregistrés</h1>
 {{#if detailsCircuit}}
 <div class="wrapper">
-	  {{#each detailsCircuit}}
-	  <div>
-	    <img src="/image/circuit/{{this.ciradresseimage}}" alt="image du circuit" class="circuitimg" />
+	<div>
+	    <img src="/image/circuit/{{detailsCircuit.ciradresseimage}}" alt="image du circuit" class="circuitimg" />
 		</div>
 		<div>
 	    <div>
-	      <b>Nom: </b> {{this.cirnom}}
+	      <b>Nom: </b> {{detailsCircuit.cirnom}}
 	    </div>
 	    <div>
-	      <b>Longueur: </b>{{this.cirlongueur}} m
+	      <b>Longueur: </b>{{detailsCircuit.cirlongueur}} m
 	    </div>
 	    <div>
-	      <b>Nombre de spectateurs: </b>{{this.cirnbspectateurs}}
+	      <b>Nombre de spectateurs: </b>{{detailsCircuit.cirnbspectateurs}}
 	    </div>
 	    <div>
-	      <b>Pays: </b>{{this.paynom}}
+	      <b>Pays: </b>{{detailsCircuit.paynom}}
 	    </div>
-	  </div>
-	  {{/each}}
+	</div>
 {{/if}}
 	<div>
 	<table class="tabpayscir">
@@ -33,8 +31,6 @@
 	</div>
 {{#if detailsCircuit}}
 </div>
-	{{#each detailsCircuit}}
-	    <p id="desccircuit">{{this.cirtext}}</p>
-	{{/each}}
+	<p id="desccircuit">{{detailsCircuit.cirtext}}</p>
 {{/if}}
 <br class="myboth" />

@@ -1,12 +1,10 @@
     {{#if derniersResultats}}
-      {{#each derniersResultats}}
       <div class="wrapper">
         <div id="derniersResultats">
           <p>DERNIERS RESULTATS</p>
-          <p>{{this.gpnom}} du {{this.gpdate}}</p>
-          <p>Mise à jour le: {{this.gpdatemaj}}</p>
-          <a href="/resultats/{{this.gpnum}}">Voir les résultats</a>
+          <p>{{derniersResultats.gpnom}} du {{derniersResultats.gpdate}}</p>
+          <p>Mise à jour le: {{derniersResultats.gpdatemaj}}</p>
+          <a href="/resultats/{{derniersResultats.gpnum}}">Voir les résultats</a>
         </div>
       </div>
-      {{/each}}
     {{/if}}

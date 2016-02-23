@@ -108,7 +108,7 @@
  a:hover{
    text-decoration: underline;
  }
- .pilote-wrapper img{
+ .pilote-wrapper img, .imgpil{
    width: 100px;
    height: 100px;
  }

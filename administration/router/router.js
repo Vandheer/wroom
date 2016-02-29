@@ -8,28 +8,25 @@ var CircuitController = require('./../controllers/CircuitController');
 module.exports = function(app){
 
   // Main Routes
-  app.get('/', HomeController.Index);
+  app.get('/', isAuthenticated, HomeController.Index);
 
-  // pilotes
-  app.get('/repertoirePilote', PiloteController.Repertoire);
-  app.get('/repertoirePilote/:lettre', PiloteController.ListePilotes);
-  app.get('/detailsPilote/:pilnum', PiloteController.DetailsPilote);
-  
-  // circuits
-  app.get('/circuits', CircuitController.ListerCircuit);
-  app.get('/circuits/:cirnum', CircuitController.DetailsCircuit);
+  // Login
+  app.get('/login', HomeController.Login);
+  app.post('/login', HomeController.VerifLogin);
 
-  // Ecuries
-  app.get('/ecuries', EcurieController.ListerEcurie);
-  app.get('/ecuries/:ecunum', EcurieController.DetailsEcurie);
-
-  //Résultats
-  app.get('/resultats', ResultatController.ListerResultat);
-  app.get('/resultats/:gpnum', ResultatController.AfficherResultat);
-
+  // Pilotes
+  app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
 
   // tout le reste
-  app.get('*', HomeController.Index);
-  app.post('*', HomeController.Index);
+  app.get('*', isAuthenticated, HomeController.Index);
+  app.post('*', isAuthenticated, HomeController.Index);
 
 };
+
+// Vérifie si un utilisateur est identifié
+function isAuthenticated(request, result, next) {
+  if (request.session.logged){
+    return next();
+  }
+  result.redirect('/login');
+}

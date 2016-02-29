@@ -1,0 +1,16 @@
+    <h1>Administration</h1>
+    {{#if login}}
+      <p>At least you tried</p>
+    {{/if}}
+    <form method="post" action="/login">
+      <p>
+        <label for="login">Login: </label>
+        <input name="login">
+      </p>
+      <p>
+        <label for="passwd">Mot de passe: </label>
+        <input type="password" name="passwd">
+      </p>
+      <input type="reset" value="Annuler">
+      <input type="submit" value="Connexion">
+    </form>

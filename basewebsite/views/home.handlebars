@@ -1,0 +1,10 @@
+    {{#if derniersResultats}}
+      <div class="wrapper">
+        <div id="derniersResultats">
+          <p>DERNIERS RESULTATS</p>
+          <p>{{derniersResultats.gpnom}} du {{derniersResultats.gpdate}}</p>
+          <p>Mise à jour le: {{derniersResultats.gpdatemaj}}</p>
+          <a href="/resultats/{{derniersResultats.gpnum}}">Voir les résultats</a>
+        </div>
+      </div>
+    {{/if}}

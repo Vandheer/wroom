@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<title> {{title}}</title>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/x-icon" href="/image/favicon.png" />
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+    <script src="/js/lightbox.js"></script>
+	<link rel="stylesheet" href="/css/structure.css" />
+	<link href="/css/lightbox.css" rel="stylesheet">
+</head>
+
+<body class="monBody">
+<div id="container">
+	<div id="header">
+	<img src="/image/header.jpg" alt="WROOM l'encyclopédie de la F1" />
+	</div>
+	<div id="menu">
+		<a href="/accueil">ACCUEIL</a> |
+		<a href="/repertoirePilote">REPERTOIRE DES PILOTES</a> |
+		<a href="/circuits">LES CIRCUITS 2016</a> |
+		<a href="/ecuries">ECURIES</a> |
+		<a href="/resultats">RESULTATS</a>
+	</div>
+	<div id="contenu">
+			{{{body}}}
+	</div>
+				<div id="footer">
+					<hr/>
+					<br/>
+					L'encyclopédie de la F1 depuis janvier 2016 (en NodeJS)
+					<br />
+					© IUT du Limousin DUT Informatique année 2
+					<br />
+					<img src="/image/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
+			</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+    body {
+    	font-family: "Segoe UI", "DejaVu Sans",Verdana, sans-serif;
+    	background: url('/image/fond.jpg') repeat;
+		  font-size:0.8em;
+    	margin: 0;
+    	padding: 0;
+    	text-align: center;
+    	color: #000000;
+    }
+
+    .tablestyle td,.tablestyle th,.tablestyle tr{
+      border: 1px solid black;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .tablestyle th{
+      font-weight: bold;
+    }
+
+    #infosres{
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    #infosres p{
+      margin-bottom: 2px;
+    }
+
+    .listeLettres{
+      text-align: center;
+      width: auto;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .listeLettres span{
+      margin: 5px 3px 5px 3px;
+    }
+
+    .monBody #container {
+    	width: 900px;
+    	margin: 0 auto;
+    	text-align: left;
+    	background:#ffffff;
+    }
+    .monBody #header {
+		    height:300px;
+    }
+	.monBody #menu {
+		height:22px;
+		color:#ffffff;
+		font-size:1.4em;
+		background:#000000;
+    }
+  .monBody #contenu {
+		 padding:20px;
+     padding-bottom: 20px;
+    }
+    .monBody #footer {
+    padding: 0 10px;
+		font-size:0.8em;
+		text-align:center;
+		height:150px;
+		background:url(/image/footer.jpg) no-repeat;
+    }
+	#menu a	{
+		color:#ffffff;
+		text-decoration:none;
+	}
+  #menu {
+    text-align: center;
+  }
+  #LogoNode {
+      padding-top: 10px;
+      max-height: 20%;
+      max-width: 20%;
+  }
+
+  .tabpayscir  {
+    float: right;
+ 	  padding:10px;
+ 	  border:1px solid black;
+ 	  margin:10px;
+ 	  -moz-border-radius:15px;
+ 	  border-radius:15px;
+ }
+
+ .tabpayscir a{
+   position: relative;
+   bottom: 10px;
+ }
+
+ .tabpayscir img{
+   position: relative;
+   width: 32px;
+   height: 32px;
+ }
+
+ .myboth  {
+ 	  clear:both;
+ }
+ a  {
+ 	text-decoration:none;
+ 	color:#0072ff;
+ }
+
+ a:hover{
+   text-decoration: underline;
+ }
+ .pilote-wrapper img, .imgpil{
+   width: 100px;
+   height: 100px;
+ }
+
+ .pilote-wrapper{
+   text-align: center;
+   display: inline-block;
+   width: 150px;
+ }
+
+ .resizemydiv{
+  width: 200px;
+ }
+
+ #footer hr{
+   border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0));
+ }
+
+ .circuitimg{
+   width: 250px;
+   height: 250px;
+   padding-right: 10px;
+ }
+
+ .wrapper{
+   display: flex;
+   justify-content: space-between;
+ }
+
+.hover:hover span,.hover:focus span{
+  transform:scale(1) rotate(0);
+}
+
+.hover span{
+  position:absolute;
+  margin-top:23px;
+  margin-left:-35px;
+  color:#09c;
+  background:rgba(0,0,0,.9);
+  padding:15px;
+  border-radius:3px;
+  box-shadow:0 0 2px rgba(0,0,0,.5);
+  transform:scale(0) rotate(-12deg);
+  transition:all .25s;
+}
+
+ #derniersResultats{
+   display: inline-block;
+   margin-left: auto;
+   margin-right: auto;
+   border: 1px solid black;
+   border-radius: 5px;
+ }
+
+ #derniersResultats:nth-child(1){
+   padding-left: 7px;
+   padding-right: 7px;
+   padding-bottom: 5px;
+ }
+
+ #derniersResultats p:first-of-type{
+   text-align: center;
+   text-decoration: underline;
+ }
+
+ #derniersResultats p:first-of-type + p{
+   font-weight: bold;
+   margin-bottom: 0px;
+ }
+
+ #derniersResultats p:first-of-type + p + p{
+   margin-top: 0px;
+   margin-bottom: 0px;
+ }
+
+ #derniersResultats a:first-of-type{
+   margin-bottom: 5px;
+ }

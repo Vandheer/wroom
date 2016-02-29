@@ -1,0 +1,40 @@
+    <h1>Résultats</h1>
+    {{#if listeResultat}}
+      <div id="infosres">
+      <p>{{infosGrandPrix.gpnom}} ({{infosGrandPrix.gpdate}})</p>
+      <a href="/circuits/{{infosGrandPrix.cirnum}}">Circuit de {{infosGrandPrix.cirnom}}</a>
+      </div>
+    <div class="wrapper">
+      <div>
+        <table class="tablestyle">
+          <tr>
+            <th>Place</th>
+            <th>Pilote</th>
+            <th>Temps</th>
+            <th>Nb points</th>
+          <tr>
+        {{#each listeResultat}}
+          <tr>
+            <td>{{this.place}}</td>
+            <td>{{this.pilnom}} {{this.pilprenom}}</td>
+            <td>{{this.tempscourse}}</td>
+            <td>{{this.points}}</td>
+          </tr>
+        {{/each}}
+        </table>
+      </div>
+      <div>
+      {{/if}}
+      <table class="tabpayscir">
+      	 {{#each listeGrandPrix}}
+      		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+            <a href="/resultats/{{this.gpnum}}"> {{this.gpnom}}</a>
+          </td></tr>
+       {{/each}}
+      </table>
+    {{#if listeResultat}}
+      </div>
+    </div>
+      <p>{{infosGrandPrix.gpcommentaire}}</p>
+    {{/if}}
+    <br class="myboth" />

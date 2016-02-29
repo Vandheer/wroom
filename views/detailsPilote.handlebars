@@ -1,3 +1,5 @@
+
+
     {{#if listeLettres}}
       <div class="listeLettres">
     		<span> Cliquez sur une lettre : </span>
@@ -9,7 +11,7 @@
     	</div>
     {{/if}}
     {{#if detailsPilote}}
-    <div class="wrapper">
+      <div class="wrapper">
         <div class="pilote-wrapper">
           <img src="/image/pilote/{{photoPrincipale.phoadresse}}" alt="Pilote de F1">
         </div>
@@ -17,14 +19,19 @@
           <p><b>Nom: </b>{{detailsPilote.pilnom}} {{detailsPilote.pilprenom}}</p>
           <p><b>Date de naissance: </b>{{detailsPilote.pildatenais}}</p>
           <p><b>Nationalité: </b>{{detailsPilote.paynom}}</p>
-      {{#if ecurie}}
-          <p><b>Ecurie: </b> {{ecurie.ecunom}} </p>
-      {{/if}}        </div>
-      <div>
-        <p><b>Poids: </b>{{detailsPilote.pilpoids}} Kg</p>
-        <p><b>Taille: </b>{{detailsPilote.piltaille}} Cm</p>
+          <p><b>Ecurie: </b>
+            {{#if ecurie}}
+              {{ecurie.ecunom}}
+            {{else}}
+              Pas d'écurie cette année
+            {{/if}}
+          </p>
+        </div>
+        <div>
+          <p><b>Poids: </b>{{detailsPilote.pilpoids}} Kg</p>
+          <p><b>Taille: </b>{{detailsPilote.piltaille}} Cm</p>
+        </div>
       </div>
-    </div>
     {{/if}}
     {{#if listeSponsors}}
       <span> <b> Principaux sponsors : </b> </span>
@@ -38,7 +45,12 @@
     {{#if photos}}
       <div class="wrapper">
         {{#each photos}}
-        <div><img src="/image/pilote/{{this.phoadresse}}" alt="pilote de f1" class="imgpil"/></div>
+        <div>
+          <a href="/image/pilote/{{this.phoadresse}}" data-lightbox="roadtrip">
+            <img src="/image/pilote/{{this.phoadresse}}" alt="pilote de f1" class="imgpil"/>
+          </a>
+        </div>
         {{/each}}
       </div>
     {{/if}}
+  

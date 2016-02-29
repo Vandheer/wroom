@@ -16,8 +16,32 @@
 		<div class="wrapper">
 			<div>
 			    <img src="/image/ecurie/{{detailsEcurie.ecuadresseimage}}" alt="logo de l'écurie" class="circuitimg" />
+			    {{#if pilotes}}
+					<p>Pilotes:</p>
+					{{#each pilotes}}
+						<p>
+							<a href="/detailsPilote/{{this.pilnum}}" class="hover">
+								{{this.pilprenom}} {{this.pilnom}}
+								<span>
+									<img src="/image/pilote/{{this.phoadresse}}" alt="photo du pilote"/>
+								</span>
+							</a>
+						</p>
+					{{/each}}
+				{{/if}}
+				{{#if voitures}}
+				<div class="wrapper">
+					{{#each voitures}}
+					<div class="pilote-wrapper">
+						<img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Voiture de F1">
+						<p>{{this.voinom}}</p>
+						<p>{{this.typelibelle}}</p>
+					</div>
+					{{/each}}
+				</div>
+				{{/if}}
 			</div>
-			<div>
+			<div class="resizemydiv">
 			   	<div>
 			   	  <b>Nom: </b> {{detailsEcurie.ecunom}}
 			   	</div>
@@ -55,21 +79,6 @@
 				</table>
 				<br class="myboth" />
 			</div>
-		{{#if pilotes}}
 		</div>
-			<p>Pilotes:</p>
-			{{#each pilotes}}
-				<p>
-					<a href="/detailsPilote/{{this.pilnum}}"> {{this.pilprenom}} {{this.pilnom}} </a>
-				</p>
-			{{/each}}
-		{{/if}}
-		{{#if voitures}}
-			{{#each voitures}}
-			<div class="pilote-wrapper">
-				<img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Voiture de F1">
-				<p>{{this.voinom}}</p>
-			</div>
-			{{/each}}
-		{{/if}}
 		<br class="myboth" />
+

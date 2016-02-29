@@ -136,7 +136,6 @@ module.exports.DetailsPilote = function(request, response){
       console.log(err);
       return;
     }
-    console.log(result);
     response.listeLettres = result[0];
     response.detailsPilote = result[1][0];
     response.listeSponsors = result[2];

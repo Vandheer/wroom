@@ -119,6 +119,10 @@
    width: 150px;
  }
 
+ .resizemydiv{
+  width: 200px;
+ }
+
  #footer hr{
    border: 0;
    height: 1px;
@@ -135,6 +139,23 @@
    display: flex;
    justify-content: space-between;
  }
+
+.hover:hover span,.hover:focus span{
+  transform:scale(1) rotate(0);
+}
+
+.hover span{
+  position:absolute;
+  margin-top:23px;
+  margin-left:-35px;
+  color:#09c;
+  background:rgba(0,0,0,.9);
+  padding:15px;
+  border-radius:3px;
+  box-shadow:0 0 2px rgba(0,0,0,.5);
+  transform:scale(0) rotate(-12deg);
+  transition:all .25s;
+}
 
  #derniersResultats{
    display: inline-block;

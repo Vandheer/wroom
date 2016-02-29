@@ -112,7 +112,6 @@ module.exports.DetailsEcurie = function(request, response){
       console.log(err);
       return;
     }
-    console.log(result);
     response.detailsEcurie = result[0][0];
     response.pays = result[1][0];
     response.sponsors = result[2];

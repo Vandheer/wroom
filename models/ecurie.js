@@ -66,7 +66,8 @@ module.exports.getSponsorsByEcunum = function (ecunum, callback) {
 module.exports.getPilotesByEcunum = function (ecunum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT pilnum, pilprenom, pilnom FROM pilote p WHERE ecunum = " + ecunum;
+			var sql ="SELECT p.pilnum, pilprenom, pilnom, phoadresse FROM pilote p INNER JOIN photo ph ON p.pilnum=ph.pilnum"
+			+ " WHERE ecunum = " + ecunum + " AND phonum = 1";
 			connexion.query(sql, callback);
 			connexion.release();
 		}
@@ -90,7 +91,8 @@ module.exports.getFournisseurByEcunum = function (ecunum, callback) {
 module.exports.getVoituresByEcunum = function (ecunum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT voinom, voiadresseimage FROM voiture WHERE ecunum = " + ecunum;
+			var sql ="SELECT voinom, voiadresseimage, typelibelle FROM voiture v INNER JOIN type_voiture t" 
+			 + " ON t.typnum = v.typnum WHERE ecunum = " + ecunum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

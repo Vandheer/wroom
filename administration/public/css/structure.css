@@ -1,144 +1,148 @@
-    body {
-    	font-family: "Segoe UI", "DejaVu Sans",Verdana, sans-serif;
-    	background: url('/image/fond.jpg') repeat;
-		  font-size:0.8em;
-    	margin: 0;
-    	padding: 0;
-    	text-align: center;
-    	color: #000000;
-    }
+body {
+  font-family: "Segoe UI", "DejaVu Sans",Verdana, sans-serif;
+  background: url('/image/fond.jpg') repeat;
+  font-size:0.8em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #000000;
+}
 
-    .tablestyle td,.tablestyle th,.tablestyle tr{
-      border: 1px solid black;
-      padding: 5px;
-      text-align: center;
-    }
+.tablestyle{
+  border-collapse: collapse;
+}
 
-    .tablestyle th{
-      font-weight: bold;
-    }
+.tablestyle td,.tablestyle th{
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
 
-    #infosres{
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
+.tablestyle th{
+  font-weight: bold;
+}
 
-    #infosres p{
-      margin-bottom: 2px;
-    }
+#infosres{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
-    .listeLettres{
-      text-align: center;
-      width: auto;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+#infosres p{
+  margin-bottom: 2px;
+}
 
-    .listeLettres span{
-      margin: 5px 3px 5px 3px;
-    }
+.listeLettres{
+  text-align: center;
+  width: auto;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
 
-    .monBody #container {
-    	width: 900px;
-    	margin: 0 auto;
-    	text-align: left;
-    	background:#ffffff;
-    }
-    .monBody #header {
-		    height:300px;
-    }
-	.monBody #menu {
-		height:22px;
-		color:#ffffff;
-		font-size:1.4em;
-		background:#000000;
-    }
-  .monBody #contenu {
-		 padding:20px;
-     padding-bottom: 20px;
-    }
-    .monBody #footer {
-    padding: 0 10px;
-		font-size:0.8em;
-		text-align:center;
-		height:150px;
-		background:url(/image/footer.jpg) no-repeat;
-    }
-	#menu a	{
-		color:#ffffff;
-		text-decoration:none;
-	}
-  #menu {
-    text-align: center;
-  }
-  #LogoNode {
-      padding-top: 10px;
-      max-height: 20%;
-      max-width: 20%;
-  }
+.listeLettres span{
+  margin: 5px 3px 5px 3px;
+}
 
-  .tabpayscir  {
-    float: right;
- 	  padding:10px;
- 	  border:1px solid black;
- 	  margin:10px;
- 	  -moz-border-radius:15px;
- 	  border-radius:15px;
- }
+.monBody #container {
+  width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  background:#ffffff;
+}
+.monBody #header {
+  height:300px;
+}
+.monBody #menu {
+  height:22px;
+  color:#ffffff;
+  font-size:1.4em;
+  background:#000000;
+}
+.monBody #contenu {
+  padding:20px;
+  padding-bottom: 20px;
+}
+.monBody #footer {
+  padding: 0 10px;
+  font-size:0.8em;
+  text-align:center;
+  height:150px;
+  background:url(/image/footer.jpg) no-repeat;
+}
+#menu a	{
+  color:#ffffff;
+  text-decoration:none;
+}
+#menu {
+  text-align: center;
+}
+#LogoNode {
+  padding-top: 10px;
+  max-height: 20%;
+  max-width: 20%;
+}
 
- .tabpayscir a{
-   position: relative;
-   bottom: 10px;
- }
+.tabpayscir  {
+  float: right;
+  padding:10px;
+  border:1px solid black;
+  margin:10px;
+  -moz-border-radius:15px;
+  border-radius:15px;
+}
 
- .tabpayscir img{
-   position: relative;
-   width: 32px;
-   height: 32px;
- }
+.tabpayscir a{
+  position: relative;
+  bottom: 10px;
+}
 
- .myboth  {
- 	  clear:both;
- }
- a  {
- 	text-decoration:none;
- 	color:#0072ff;
- }
+.tabpayscir img{
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
 
- a:hover{
-   text-decoration: underline;
- }
- .pilote-wrapper img, .imgpil{
-   width: 100px;
-   height: 100px;
- }
+.myboth  {
+  clear:both;
+}
+a  {
+  text-decoration:none;
+  color:#0072ff;
+}
 
- .pilote-wrapper{
-   text-align: center;
-   display: inline-block;
-   width: 150px;
- }
+a:hover{
+  text-decoration: underline;
+}
+.pilote-wrapper img, .imgpil{
+  width: 100px;
+  height: 100px;
+}
 
- .resizemydiv{
+.pilote-wrapper{
+  text-align: center;
+  display: inline-block;
+  width: 150px;
+}
+
+.resizemydiv{
   width: 200px;
- }
+}
 
- #footer hr{
-   border: 0;
-   height: 1px;
-   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0));
- }
+#footer hr{
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0));
+}
 
- .circuitimg{
-   width: 250px;
-   height: 250px;
-   padding-right: 10px;
- }
+.circuitimg{
+  width: 250px;
+  height: 250px;
+  padding-right: 10px;
+}
 
- .wrapper{
-   display: flex;
-   justify-content: space-between;
- }
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+}
 
 .hover:hover span,.hover:focus span{
   transform:scale(1) rotate(0);
@@ -157,35 +161,64 @@
   transition:all .25s;
 }
 
- #derniersResultats{
-   display: inline-block;
-   margin-left: auto;
-   margin-right: auto;
-   border: 1px solid black;
-   border-radius: 5px;
- }
+.error{
+  font-weight: bold;
+  color: red;
+}
 
- #derniersResultats:nth-child(1){
-   padding-left: 7px;
-   padding-right: 7px;
-   padding-bottom: 5px;
- }
+.center-div{
+  margin: auto;
+  max-width: 800px;
+  display: inline-block;
+  text-align: center;
+}
 
- #derniersResultats p:first-of-type{
-   text-align: center;
-   text-decoration: underline;
- }
+.form-style{
+  display: table;
+}
 
- #derniersResultats p:first-of-type + p{
-   font-weight: bold;
-   margin-bottom: 0px;
- }
+.input-style{
+  margin: 10px 0px 10px 0px;
+  display: table-row;
+}
 
- #derniersResultats p:first-of-type + p + p{
-   margin-top: 0px;
-   margin-bottom: 0px;
- }
+.input-style input{
+  display: table-cell;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 5px;
+  height: 30px;
+}
 
- #derniersResultats a:first-of-type{
-   margin-bottom: 5px;
- }
+.input-style label{
+  display: table-cell;
+  text-align: left;
+  margin:10px 15px 0px 0px;
+}
+
+.button-style{
+  display: inline-block;
+}
+
+.button-style input{
+  width: 85px;
+}
+
+.input-error{
+  border-color: red;
+}
+
+.warning{
+  color: rgb(156,122,5);
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.hidden{
+  display: none;
+}
+
+th.hidden{
+  border: none;
+}

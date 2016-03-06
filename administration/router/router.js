@@ -3,6 +3,7 @@ var ResultatController = require('./../controllers/ResultatController');
 var EcurieController = require('./../controllers/EcurieController');
 var PiloteController = require('./../controllers/PiloteController');
 var CircuitController = require('./../controllers/CircuitController');
+var SponsorController = require('./../controllers/SponsorController');
 
 // Routes
 module.exports = function(app){
@@ -16,6 +17,8 @@ module.exports = function(app){
 
   // Pilotes
   app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
+
+  app.get('/sponsors', isAuthenticated, SponsorController.Test);
 
   // tout le reste
   app.get('*', isAuthenticated, HomeController.Index);

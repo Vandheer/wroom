@@ -1,0 +1,42 @@
+<div class="centermydiv">
+    <img src="image/cat_pilote.png" alt="un casque de pilote">
+    <h1>Gestion des Pilotes</h1>
+    <a href="/ajouterPilote">
+      <img src="image/act_add.png" alt="ajouter" title="Ajouter"/>
+      Ajouter un pilote
+    </a>
+  <table class="tablestyle">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Actions</th>
+        <th class="hidden">ID</th>
+      </tr>
+    </thead>
+    <tbody name="table-start">
+      {{#if listePilotes}}
+      {{#each listePilotes}}
+      <tr>
+        <td>{{this.pilnom}}</td>
+        <td>{{this.pilprenom}}</td>
+        <td>{{this.pildatenais}}</td>
+        <td>
+          <a href="#table-start" class="modifier">
+            <img src="image/act_edit.png" alt="modifier" title="Modifier"/>
+            Modifier
+          </a>
+          <a href="#table-start" class="supprimer">
+            <img src="image/act_delete.png" alt="supprimer" title="Supprimer"/>
+            Supprimer
+          </a>
+        </td>
+        <td class="hidden">{{this.pilnum}}</td>
+      </tr>
+      {{/each}}
+      {{/if}}
+  </tbody>
+  </table>
+</div>
+<br class="myboth" />

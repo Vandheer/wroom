@@ -10,6 +10,7 @@ body {
 
 .tablestyle{
   border-collapse: collapse;
+  margin: auto;
 }
 
 .tablestyle td,.tablestyle th{
@@ -127,6 +128,10 @@ a:hover{
   width: 200px;
 }
 
+.centermydiv{
+  text-align: center;
+}
+
 #footer hr{
   border: 0;
   height: 1px;
@@ -175,6 +180,7 @@ a:hover{
 
 .form-style{
   display: table;
+  margin: auto;
 }
 
 .input-style{
@@ -186,8 +192,14 @@ a:hover{
   display: table-cell;
   border: 1px solid black;
   border-radius: 4px;
-  margin-top: 5px;
-  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.input-style select{
+  display: table-cell;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .input-style label{
@@ -196,16 +208,14 @@ a:hover{
   margin:10px 15px 0px 0px;
 }
 
-.button-style{
-  display: inline-block;
-}
-
-.button-style input{
-  width: 85px;
-}
-
 .input-error{
   border-color: red;
+}
+
+#button-style{
+  display: block;
+  margin: 0;
+  text-align: center;
 }
 
 .warning{

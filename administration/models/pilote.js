@@ -40,6 +40,18 @@ module.exports.getDetailsPilote = function (pilnum, callback) {
 	});
 };
 
+// ////////////////////// L I S T E   D E S   P I L O T E S
+
+module.exports.getListePilotes = function (callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="SELECT pilnum, pilnom, pilprenom, DATE_FORMAT(pildatenais,\'%d/%m/%Y\') AS pildatenais FROM pilote";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
 // ////////////////////// S P O N S O R S   D ' U N   P I L O T E
 
 module.exports.getSponsorsByPilnum = function (pilnum, callback) {

@@ -1,4 +1,5 @@
-<h1>Administration</h1>
+<div class="centermydiv">
+  <h1>Administration</h1>
   {{#if login}}
   <p class="error">At least you tried</p>
   {{/if}}
@@ -11,8 +12,6 @@
       <label for="passwd">Mot de passe: </label>
       <input type="password" name="passwd">
     </div>
-    <div class="button-style">
-      <input type="reset" value="Annuler">
-      <input type="submit" value="Connexion">
-    </div>
+    <input type="submit" value="Connexion" id="button-style">
   </form>
+</div>

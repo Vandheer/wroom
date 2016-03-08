@@ -14,9 +14,11 @@ module.exports = function(app){
   // Login
   app.get('/login', HomeController.Login);
   app.post('/login', HomeController.VerifLogin);
+  app.get('/home', HomeController.Index);
 
   // Pilotes
   app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
+  app.get('/ajouterPilote', isAuthenticated, PiloteController.AjouterPilote);
 
   app.get('/sponsors', isAuthenticated, SponsorController.Test);
 

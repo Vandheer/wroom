@@ -1,0 +1,55 @@
+<h1>Ajouter un pilote</h1>
+<form method="POST" class="form-style">
+	<div class="input-style">
+      <label for="prenom">Prénom: </label>
+      <input name="prenom">
+    </div>
+    <div class="input-style">
+      <label for="nom">Nom: </label>
+      <input name="nom">
+    </div>
+    <div class="input-style">
+      <label for="datenais">Date de naissance: </label>
+      <input name="datenais">
+      <!-- DATE PICKER -->
+    </div>
+    <div class="input-style">
+      <label for="nationalite">Nationalité: </label>
+      <select name="nationalite">
+      	{{#if listeNationalite}}
+      		{{#each listeNationalite}}
+      			<option value="{{this.paynum}}"> {{this.paynat}} </option>
+      		{{/each}}
+      	{{/if}}
+      </select>
+    </div>
+    <div class="input-style">
+      <label for="ecurie">Ecurie: </label>
+      <select name="Ecurie">
+      	{{#if listeEcurie}}
+      		{{#each listeEcurie}}
+      			<option value="{{this.ecunum}}"> {{this.ecunom}} </option>
+      		{{/each}}
+      	{{/if}}
+      </select>
+    </div>
+    <div class="input-style">
+      <label for="points">Points: </label>
+      <input name="points"> pts
+    </div>
+    <div class="input-style">
+      <label for="poids">Poids: </label>
+      <input name="poids"> kg
+    </div>
+    <div class="input-style">
+      <label for="taille">Taille: </label>
+      <input name="taille"> cm
+    </div>
+    <div class="input-style">
+      <label for="description">Description: </label>
+      <input type="textarea" name="description">
+    </div>
+    <div>
+    	<input type="submit" value="AJOUTER" id="button-style">
+    </div>
+</form>

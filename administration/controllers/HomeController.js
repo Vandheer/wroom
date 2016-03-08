@@ -53,7 +53,7 @@ module.exports.VerifLogin = function(request, response){
   ], function (err, result) {
     if(result){
       request.session.logged = true;
-      response.render('home', response);
+      response.redirect('/home');
     }else{
       response.login = true;
       response.render('login', response);

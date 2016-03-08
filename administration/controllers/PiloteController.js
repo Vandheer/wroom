@@ -1,25 +1,59 @@
-var pilote = require('../models/pilote.js');
+var model = require('../models/pilote.js');
 var ecurie = require('../models/ecurie.js');
+var nationalite = require('../models/nationalite.js');
 var async = require('async');
 
 /*------------------------------ FONCTIONS -----------------------------------*/
 
+function getListeEcurie(callback){
+  ecurie.getListeEcurie( function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+};
+
+function getListeNationalite(callback){
+  nationalite.getListeNationalite( function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+};
+
 // ///////////////////////// A F F I C H A G E
 
 module.exports.AfficherPilotes = 	function(request, response){
-  response.title = 'Gestion des pilotes';
+  response.title = 'Liste des pilotes';
+  model.getListePilotes( function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    response.listePilotes = result;
+    response.render('listerPilote', response);
+  });
+};
 
+// ///////////////////////// A F F I C H A G E
+
+module.exports.AjouterPilote =  function(request, response){
+  response.title = 'Ajout d\'un pilote';
   async.parallel([
-    getLettresUtilisees,
-    async.apply(getPiloteByLettre,lettre)
+    getListeEcurie,
+    getListeNationalite
   ], function (err, result){
     if(err){
       console.log(err);
       return;
     }
-    response.listeLettres = result[0];
-    response.listePilotes = result[1];
-    response.render('repertoirePilotes', response);
+    response.listeEcurie = result[0];
+    response.listeNationalite = result[1];
+    response.render('ajouterPilote', response);
   });
 };
 
@@ -51,3 +85,4 @@ module.exports.DetailsPilote = function(request, response){
     response.render('detailsPilote', response);
   });
 };
+

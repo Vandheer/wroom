@@ -69,7 +69,7 @@ module.exports.getPhotoPrincipaleByPilote = function (pilnum, callback) {
 module.exports.getPhotosByPilote = function (pilnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT phoadresse FROM photo WHERE pilnum = " + pilnum + " AND phonum != 1";
+			var sql ="SELECT phoadresse, phocommentaire FROM photo WHERE pilnum = " + pilnum + " AND phonum != 1";
 			connexion.query(sql, callback);
 			connexion.release();
 		}

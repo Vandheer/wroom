@@ -46,11 +46,11 @@
       <div class="wrapper">
         {{#each photos}}
         <div>
-          <a href="/image/pilote/{{this.phoadresse}}" data-lightbox="roadtrip">
+          <a href="/image/pilote/{{this.phoadresse}}" data-lightbox="roadtrip" data-title="{{this.phocommentaire}}">
             <img src="/image/pilote/{{this.phoadresse}}" alt="pilote de f1" class="imgpil"/>
           </a>
         </div>
         {{/each}}
       </div>
     {{/if}}
-  
+    <script src="/js/lightbox.js"></script>

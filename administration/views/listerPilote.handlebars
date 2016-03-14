@@ -12,7 +12,6 @@
         <th>Prénom</th>
         <th>Date de naissance</th>
         <th>Actions</th>
-        <th class="hidden">ID</th>
       </tr>
     </thead>
     <tbody name="table-start">
@@ -23,16 +22,15 @@
         <td>{{this.pilprenom}}</td>
         <td>{{this.pildatenais}}</td>
         <td>
-          <a href="#table-start" class="modifier">
+          <a href="/pilotes/modifier/{{this.pilnum}}" class="modifier">
             <img src="image/act_edit.png" alt="modifier" title="Modifier"/>
             Modifier
           </a>
-          <a href="#table-start" class="supprimer">
+          <a href="/pilotes/supprimer/{{this.pilnum}}" class="supprimer">
             <img src="image/act_delete.png" alt="supprimer" title="Supprimer"/>
             Supprimer
           </a>
         </td>
-        <td class="hidden">{{this.pilnum}}</td>
       </tr>
       {{/each}}
       {{/if}}

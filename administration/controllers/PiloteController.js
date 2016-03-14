@@ -25,7 +25,7 @@ function getListeNationalite(callback){
   });
 };
 
-// ///////////////////////// A F F I C H A G E
+// ///////////////////////// A F F I C H A G E   P I L O T E S
 
 module.exports.AfficherPilotes = 	function(request, response){
   response.title = 'Liste des pilotes';
@@ -39,9 +39,9 @@ module.exports.AfficherPilotes = 	function(request, response){
   });
 };
 
-// ///////////////////////// A F F I C H A G E
+// ///////////////////////// A F F I C H A G E   F O R M U L A I R E
 
-module.exports.AjouterPilote =  function(request, response){
+module.exports.FormulairePilote =  function(request, response){
   response.title = 'Ajout d\'un pilote';
   async.parallel([
     getListeEcurie,
@@ -57,32 +57,40 @@ module.exports.AjouterPilote =  function(request, response){
   });
 };
 
-// ///////////////////////// D E T A I L S   D ' U N   P I L O T E
+// ///////////////////////// A J O U T   P I L O T E
 
-module.exports.DetailsPilote = function(request, response){
-  response.title = 'Détails du pilote';
+module.exports.AjoutPilote =  function(request, response){
+  response.title = 'Ajout d\'un pilote';
 
-  var lettre = request.params.lettre;
-  var pilnum = request.params.pilnum;
-  async.parallel([
-    getLettresUtilisees,
-    async.apply(getDetailsPilote,pilnum),
-    async.apply(getSponsorsByPilnum, pilnum),
-    async.apply(getPhotoPrincipaleByPilote, pilnum),
-    async.apply(getPhotosByPilote, pilnum),
-    async.apply(getEcurieByPilote, pilnum)
-  ], function (err, result){
-    if(err){
+  var prenom = request.body.prenom;
+  var nom = request.body.nom;
+  var datenais = request.body.datenais;
+  var nationalite = request.body.nationalite;
+  var ecurie = request.body.ecurie;
+  var points = request.body.points;
+  var poids = request.body.poids;
+  var taille = request.body.taille;
+  var descr = request.body.descr;
+
+  model.ajoutPilote(prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, function (err, result) {
+    if (err) {
       console.log(err);
       return;
     }
-    response.listeLettres = result[0];
-    response.detailsPilote = result[1][0];
-    response.listeSponsors = result[2];
-    response.photoPrincipale = result[3][0];
-    response.photos = result[4];
-    response.ecurie = result[5][0];
-    response.render('detailsPilote', response);
+    response.redirect('/pilotes');
   });
 };
 
+// ///////////////////////// D E T A I L S   D ' U N   P I L O T E
+
+module.exports.SupprimerPilote = function(request, response){
+  response.title = 'Supression du pilote';
+  var pilnum = request.params.pilnum;
+  model.supprimerPilote(pilnum, function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    response.redirect('/pilotes');
+  });
+};

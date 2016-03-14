@@ -52,6 +52,30 @@ module.exports.getListePilotes = function (callback) {
 	});
 };
 
+// ////////////////////// A J O U T   P I L O T E
+
+module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, callback) {
+	db.getConnection(function(err, connexion){
+		console.log('efd');
+		if(!err){
+			var sql ="INSERT INTO pilote(pilnom, pilprenom, pildatenais, pilpoints, pilpoids, piltaille, piltexte, paynum, ecunum) "
+			+ "VALUES(\'"+nom+"\',\'"+prenom+"\',STR_TO_DATE(\'"+datenais+"\', '%d/%m/%Y'),"+points+","+poids+","+taille+",\'"+descr+"\',"+nationalite+","+ecurie+")";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+module.exports.supprimerPilote = function (pilnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="DELETE FROM pilote WHERE pilnum="+pilnum;
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
 // ////////////////////// S P O N S O R S   D ' U N   P I L O T E
 
 module.exports.getSponsorsByPilnum = function (pilnum, callback) {

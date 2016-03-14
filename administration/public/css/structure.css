@@ -196,6 +196,14 @@ a:hover{
   margin-left: 10px;
 }
 
+.input-style textarea{
+  display: table-cell;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 .input-style select{
   display: table-cell;
   margin-top: 10px;
@@ -206,6 +214,8 @@ a:hover{
   display: table-cell;
   text-align: left;
   margin:10px 15px 0px 0px;
+  vertical-align: top; 
+  padding-top: 10px;
 }
 
 .input-error{

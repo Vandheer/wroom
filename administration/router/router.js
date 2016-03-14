@@ -18,8 +18,11 @@ module.exports = function(app){
 
   // Pilotes
   app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
-  app.get('/ajouterPilote', isAuthenticated, PiloteController.AjouterPilote);
+  app.get('/ajouterPilote', isAuthenticated, PiloteController.FormulairePilote);
+  app.post('/ajouterPilote', isAuthenticated, PiloteController.AjoutPilote);
 
+  app.get('/pilotes/supprimer/:pilnum',isAuthenticated, PiloteController.SupprimerPilote);
+  
   app.get('/sponsors', isAuthenticated, SponsorController.Test);
 
   // tout le reste

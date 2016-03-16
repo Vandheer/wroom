@@ -56,8 +56,8 @@ module.exports.getListePilotes = function (callback) {
 
 module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, callback) {
 	db.getConnection(function(err, connexion){
-		console.log('efd');
 		if(!err){
+			console.log(prenom+ nom+ datenais+ nationalite+ ecurie+ points+ poids+ taille+descr);
 			var sql ="INSERT INTO pilote(pilnom, pilprenom, pildatenais, pilpoints, pilpoids, piltaille, piltexte, paynum, ecunum) "
 			+ "VALUES(\'"+nom+"\',\'"+prenom+"\',STR_TO_DATE(\'"+datenais+"\', '%d/%m/%Y'),"+points+","+poids+","+taille+",\'"+descr+"\',"+nationalite+","+ecurie+")";
 			connexion.query(sql, callback);
@@ -75,6 +75,19 @@ module.exports.supprimerPilote = function (pilnum, callback) {
 		}
 	});
 };
+
+// ////////////////////// A J O U T   P H O T O
+
+module.exports.ajoutPhoto = function (pilnum, phoadresse, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="INSERT INTO photo(phonum,pilnum,phosujet,phocommentaire,phoadresse) VALUES(1,"+pilnum+",'Photo identité','Photo officielle',"+phoadresse+")";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
 
 // ////////////////////// S P O N S O R S   D ' U N   P I L O T E
 

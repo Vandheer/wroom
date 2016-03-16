@@ -1,6 +1,6 @@
 <script src="/js/datePicker.js"></script>
 <h1>Ajouter un pilote</h1>
-<form method="POST" class="form-style">
+<form method="POST" enctype="multipart/form-data" class="form-style">
 	<div class="input-style">
       <label for="prenom">Prénom: </label>
       <input name="prenom" pattern="[A-Za-z,-, ]*" required>
@@ -32,6 +32,10 @@
       		{{/each}}
       	{{/if}}
       </select>
+    </div>
+    <div class="input-style">
+      <label for="image">Image :</label>
+      <input type="file" multiple="multiple" name="image" />
     </div>
     <div class="input-style">
       <label for="points">Points: </label>

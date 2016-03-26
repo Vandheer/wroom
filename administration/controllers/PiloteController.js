@@ -5,6 +5,7 @@ var async = require('async');
 var formidable = require('formidable');
 var fs   = require('fs-extra');
 var path = require("path");
+
 /*------------------------------ FONCTIONS -----------------------------------*/
 
 function getListeEcurie(callback){
@@ -76,11 +77,19 @@ module.exports.AjoutPilote =  function(request, response){
   var phoadresse;
   var form = new formidable.IncomingForm();
 
-     form.parse(request, function(err, fields, files) {
-        prenom = fields.prenom;
-        console.log(prenom);
-        console.log({fields: fields, files: files});
-      });
+ form.parse(request, function(err, fields, files) {
+    prenom = fields.prenom;
+    nom = fields.nom;
+    datenais = fields.datenais;
+    nationalite = fields.nationalite;
+    ecurie = fields.ecurie;
+    points = fields.points;
+    poids = fields.poids;
+    taille = fields.taille;
+    descr = fields.descr;
+    console.log(prenom);
+    console.log({fields: fields, files: files});
+  });
   form.on('fileBegin', function(name, file) {
     phoadresse = file.name;
     file.path = './public/temp/' + file.name;
@@ -88,13 +97,13 @@ module.exports.AjoutPilote =  function(request, response){
 
   async.series([
     function(callback) {
-      console.log("zezarazefs");
+      console.log(prenom);
       model.ajoutPilote(prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, function (err, result) {
         if (err) {
           console.log(err);
           return;
         }
-        console.log('azsedrft'+result);
+        console.log('azsedrft');
         callback(null, result);
       });
     },
@@ -108,7 +117,6 @@ module.exports.AjoutPilote =  function(request, response){
     });
   }
   ]);
-
 
   form.on('end', function (fields, files) {
       var temp_path = this.openedFiles[0].path;
@@ -132,6 +140,7 @@ module.exports.AjoutPilote =  function(request, response){
       });
   });
 
+  response.redirect('/pilotes');
 };
 
 // ///////////////////////// D E T A I L S   D ' U N   P I L O T E

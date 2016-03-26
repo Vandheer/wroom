@@ -20,8 +20,12 @@ module.exports = function(app){
   app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
   app.get('/ajouterPilote', isAuthenticated, PiloteController.FormulairePilote);
   app.post('/ajouterPilote', isAuthenticated, PiloteController.AjoutPilote);
-
   app.get('/pilotes/supprimer/:pilnum',isAuthenticated, PiloteController.SupprimerPilote);
+
+  // Circuits
+  app.get('/circuits', isAuthenticated, CircuitController.AfficherCircuits);
+  app.get('/ajouterCircuit', isAuthenticated, CircuitController.FormulaireCircuit);
+  app.post('/ajouterCircuit', isAuthenticated, CircuitController.AjoutCircuit);
   
   app.get('/sponsors', isAuthenticated, SponsorController.Test);
 

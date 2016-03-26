@@ -5,7 +5,7 @@ var db = require('../configDb');
 module.exports.getListeEcurie = function (callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT ecunum, ecunom FROM ecurie";
+			var sql ="SELECT ecunum, ecunom FROM ecurie ORDER BY ecunom";
 			connexion.query(sql, callback);
 			connexion.release();
 		}

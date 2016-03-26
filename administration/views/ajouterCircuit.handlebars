@@ -1,0 +1,38 @@
+<h1>Ajouter un circuit</h1>
+<form method="POST" enctype="multipart/form-data">
+	<div class="form-style">
+		<div class="input-style">
+			<label for="nom">Nom: </label>
+			<input name="nom" pattern="[A-Za-z,-, ]*" required>
+		</div>
+		<div class="input-style">
+			<label for="longueur">Longueur: </label>
+			<input name="longueur" pattern="[0-9]*" required> m
+		</div>
+		<div class="input-style">
+			<label for="pays">Pays: </label>
+			<select name="pays">
+				{{#if listePays}}
+				{{#each listePays}}
+				<option value="{{this.paynum}}"> {{this.paynom}} </option>
+				{{/each}}
+				{{/if}}
+			</select>
+		</div>
+		<div class="input-style">
+			<label for="image">Image:</label>
+			<input type="file" multiple="multiple" name="image" />
+		</div>
+		<div class="input-style">
+			<label for="spectateurs">Nombre de spectateurs: </label>
+			<input name="spectateurs" pattern="[0-9]*" required> personnes
+		</div>
+		<div class="input-style">
+			<label for="description">Description: </label>
+			<textarea rows="2" cols="40"></textarea>
+		</div>
+	</div>
+	<div class="centermydiv">
+		<input type="submit" value="Ajouter" class="button-style">
+	</div>
+</form>

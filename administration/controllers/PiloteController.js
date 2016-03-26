@@ -77,70 +77,86 @@ module.exports.AjoutPilote =  function(request, response){
   var phoadresse;
   var form = new formidable.IncomingForm();
 
- form.parse(request, function(err, fields, files) {
-    prenom = fields.prenom;
-    nom = fields.nom;
-    datenais = fields.datenais;
-    nationalite = fields.nationalite;
-    ecurie = fields.ecurie;
-    points = fields.points;
-    poids = fields.poids;
-    taille = fields.taille;
-    descr = fields.descr;
-    console.log(prenom);
-    console.log({fields: fields, files: files});
-  });
-  form.on('fileBegin', function(name, file) {
-    phoadresse = file.name;
-    file.path = './public/temp/' + file.name;
-  });
-
   async.series([
     function(callback) {
+      form.parse(request, function(err, fields, files) {
+        prenom = fields.prenom;
+        nom = fields.nom;
+        datenais = fields.datenais;
+        nationalite = fields.nationalite;
+        ecurie = fields.ecurie;
+        points = fields.points;
+        poids = fields.poids;
+        taille = fields.taille;
+        descr = fields.descr;
+        console.log("1");
+        console.log(prenom);
+        console.log({fields: fields, files: files});
+        // ça sort pas d'ici
+        callback(null);
+      });
+    },
+    function(callback) {
+      form.on('fileBegin', function(name, file) {
+        console.log("2");
+        phoadresse = file.name;
+        file.path = './public/temp/' + file.name;
+        // help
+        callback(null);
+      });
+    },
+    function(callback) {
+      console.log("3");
       console.log(prenom);
       model.ajoutPilote(prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, function (err, result) {
+        console.log("4");
         if (err) {
           console.log(err);
           return;
         }
-        console.log('azsedrft');
         callback(null, result);
       });
     },
     function(callback) {
       model.ajoutPhoto(pilnum, phoadresse, function (err, result) {
+        console.log("5");
         if (err) {
           console.log(err);
           return;
         }
         callback(null, result);
-    });
-  }
-  ]);
-
-  form.on('end', function (fields, files) {
-      var temp_path = this.openedFiles[0].path;
-      var file_name = this.openedFiles[0].name;
-      var new_location = './public/image/pilote/';
-      fs.copy(temp_path, new_location + file_name, function (err) {
-          if (err) {
-              console.error(err);
-          } else {
-              console.log("success!");
-              // Delete the "temp" file
-              fs.unlink(temp_path, function(err) {
-              if (err) {
-                  console.error(err);
-                  console.log("TROUBLE deletion temp !");
-                  } else {
-                  console.log("success deletion temp !");
-                  }
-              });
-          }
       });
-  });
+    }
+  ], function (err, result){
+    if(err){
+      console.log(err);
+      return;
+    }
+    console.log("6");
+    form.on('end', function (fields, files) {
+        var temp_path = this.openedFiles[0].path;
+        var file_name = this.openedFiles[0].name;
+        var new_location = './public/image/pilote/';
+        fs.copy(temp_path, new_location + file_name, function (err) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log("success!");
+                // Delete the "temp" file
+                fs.unlink(temp_path, function(err) {
+                if (err) {
+                    console.error(err);
+                    console.log("TROUBLE deletion temp !");
+                    } else {
+                    console.log("success deletion temp !");
+                    }
+                });
+            }
+        });
+    });
 
-  response.redirect('/pilotes');
+    response.redirect('/pilotes');
+  });
 };
 
 // ///////////////////////// D E T A I L S   D ' U N   P I L O T E

@@ -57,7 +57,6 @@ module.exports.getListePilotes = function (callback) {
 module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			console.log(prenom+ nom+ datenais+ nationalite+ ecurie+ points+ poids+ taille+descr);
 			var sql ="INSERT INTO pilote(pilnom, pilprenom, pildatenais, pilpoints, pilpoids, piltaille, piltexte, paynum, ecunum) "
 			+ "VALUES(\'"+nom+"\',\'"+prenom+"\',STR_TO_DATE(\'"+datenais+"\', '%d/%m/%Y'),"+points+","+poids+","+taille+",\'"+descr+"\',"+nationalite+","+ecurie+")";
 			connexion.query(sql, callback);
@@ -81,7 +80,7 @@ module.exports.supprimerPilote = function (pilnum, callback) {
 module.exports.ajoutPhoto = function (pilnum, phoadresse, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="INSERT INTO photo(phonum,pilnum,phosujet,phocommentaire,phoadresse) VALUES(1,"+pilnum+",'Photo identité','Photo officielle',"+phoadresse+")";
+			var sql ="INSERT INTO photo(phonum,pilnum,phosujet,phocommentaire,phoadresse) VALUES(1,"+pilnum+",'Photo identité','Photo officielle','"+phoadresse+"')";
 			connexion.query(sql, callback);
 			connexion.release();
 		}

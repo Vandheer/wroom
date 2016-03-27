@@ -2,173 +2,110 @@ var model = require('../models/pilote.js');
 var ecurie = require('../models/ecurie.js');
 var nationalite = require('../models/nationalite.js');
 var async = require('async');
-var formidable = require('formidable');
 var fs   = require('fs-extra');
 var path = require("path");
 
 /*------------------------------ FONCTIONS -----------------------------------*/
 
 function getListeEcurie(callback){
-  ecurie.getListeEcurie( function (err, result) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    callback(null, result);
-  });
+    ecurie.getListeEcurie( function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback(null, result);
+    });
 };
 
 function getListeNationalite(callback){
-  nationalite.getListeNationalite( function (err, result) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    callback(null, result);
-  });
+    nationalite.getListeNationalite( function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback(null, result);
+    });
 };
+
 
 // ///////////////////////// A F F I C H A G E   P I L O T E S
 
 module.exports.AfficherPilotes = 	function(request, response){
-  response.title = 'Liste des pilotes';
-  model.getListePilotes( function (err, result) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    response.listePilotes = result;
-    response.render('listerPilote', response);
-  });
+    response.title = 'Liste des pilotes';
+    model.getListePilotes( function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        response.listePilotes = result;
+        response.render('listerPilote', response);
+    });
 };
 
 // ///////////////////////// A F F I C H A G E   F O R M U L A I R E
 
 module.exports.FormulairePilote =  function(request, response){
-  response.title = 'Ajout d\'un pilote';
-  async.parallel([
-    getListeEcurie,
-    getListeNationalite
-  ], function (err, result){
-    if(err){
-      console.log(err);
-      return;
-    }
-    response.listeEcurie = result[0];
-    response.listeNationalite = result[1];
-    response.render('ajouterPilote', response);
-  });
+    response.title = 'Ajout d\'un pilote';
+    async.parallel([
+        getListeEcurie,
+        getListeNationalite
+    ], function (err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        response.listeEcurie = result[0];
+        response.listeNationalite = result[1];
+        response.render('ajouterPilote', response);
+    });
 };
 
 // ///////////////////////// A J O U T   P I L O T E
 
 module.exports.AjoutPilote =  function(request, response){
-  response.title = 'Ajout d\'un pilote';
-
-  var prenom;
-  var nom;
-  var datenais;
-  var nationalite;
-  var ecurie;
-  var points;
-  var poids;
-  var taille;
-  var descr;
-  var phoadresse;
-  var form = new formidable.IncomingForm();
-
-  async.series([
-    function(callback) {
-      form.parse(request, function(err, fields, files) {
-        prenom = fields.prenom;
-        nom = fields.nom;
-        datenais = fields.datenais;
-        nationalite = fields.nationalite;
-        ecurie = fields.ecurie;
-        points = fields.points;
-        poids = fields.poids;
-        taille = fields.taille;
-        descr = fields.descr;
-        console.log("1");
-        console.log(prenom);
-        console.log({fields: fields, files: files});
-        // ça sort pas d'ici
-        callback(null);
-      });
-    },
-    function(callback) {
-      form.on('fileBegin', function(name, file) {
-        console.log("2");
-        phoadresse = file.name;
-        file.path = './public/temp/' + file.name;
-        // help
-        callback(null);
-      });
-    },
-    function(callback) {
-      console.log("3");
-      console.log(prenom);
-      model.ajoutPilote(prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, function (err, result) {
-        console.log("4");
-        if (err) {
-          console.log(err);
-          return;
-        }
-        callback(null, result);
-      });
-    },
-    function(callback) {
-      model.ajoutPhoto(pilnum, phoadresse, function (err, result) {
-        console.log("5");
-        if (err) {
-          console.log(err);
-          return;
-        }
-        callback(null, result);
-      });
-    }
-  ], function (err, result){
-    if(err){
-      console.log(err);
-      return;
-    }
-    console.log("6");
-    form.on('end', function (fields, files) {
-        var temp_path = this.openedFiles[0].path;
-        var file_name = this.openedFiles[0].name;
-        var new_location = './public/image/pilote/';
-        fs.copy(temp_path, new_location + file_name, function (err) {
-            if (err) {
-                console.error(err);
-            } else {
-                console.log("success!");
-                // Delete the "temp" file
-                fs.unlink(temp_path, function(err) {
+    response.title = 'Ajout d\'un pilote';
+    async.waterfall([
+        function(callback) {
+            model.ajoutPilote(request.body['prenom'], request.body['nom'],
+                request.body['datenais'], request.body['nationalite'], request.body['ecurie'],
+                request.body['points'], request.body['poids'], request.body['taille'],
+                request.body['description'], function (err, result) {
                 if (err) {
-                    console.error(err);
-                    console.log("TROUBLE deletion temp !");
-                    } else {
-                    console.log("success deletion temp !");
-                    }
-                });
-            }
-        });
-    });
+                    console.log(err);
+                    return;
+                }
+                callback(null, result);
+            });
+        },
+        function(result, callback){
+            model.ajoutPhoto(result.insertId, request.file.filename, function(err, result){
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                callback(null, result);
+            });
+        }
 
-    response.redirect('/pilotes');
-  });
+    ], function (err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        response.redirect('/pilotes');
+    });
 };
 
 // ///////////////////////// D E T A I L S   D ' U N   P I L O T E
 
 module.exports.SupprimerPilote = function(request, response){
-  response.title = 'Supression du pilote';
-  var pilnum = request.params.pilnum;
-  model.supprimerPilote(pilnum, function (err, result) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    response.redirect('/pilotes');
-  });
+    response.title = 'Supression du pilote';
+    var pilnum = request.params.pilnum;
+    model.supprimerPilote(pilnum, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        response.redirect('/pilotes');
+    });
 };

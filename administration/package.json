@@ -12,6 +12,7 @@
     "express-handlebars": "*",
     "express-session": "~1.12",
     "lightbox2": "^2.8.2",
+    "multer": "^1.1.0",
     "mysql": "*",
     "string": ">3.0",
     "unidecode": "*"

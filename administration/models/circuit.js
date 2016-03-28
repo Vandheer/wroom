@@ -28,12 +28,25 @@ module.exports.getDetailsCircuit = function (cirnum, callback) {
 
 // ////////////////////// A J O U T   C I R C U I T
 
-module.exports.ajoutCircuit = function (nom, pays, longueur, spectateurs, descr, phoadresse, callback) {
+module.exports.ajoutCircuit = function (nom, pays, longueur, spectateurs, phoadresse, description, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			console.log(nom+ pays+ longueur+ spectateurs+ descr+ phoadresse);
-			var sql ="INSERT INTO circuit(paynum, cirnom, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) "
-			+ "VALUES("+pays+"\'"+nom+"\',"+longueur+","+spectateurs+",\'"+descr+"\',\'"+phoadresse+"\')";
+			console.log(nom+ pays+ longueur+ spectateurs+ description+ phoadresse);
+			var sql ="INSERT INTO circuit(cirnom, paynum, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) "
+			+ "VALUES(\'"+nom+"\',"+pays+","+longueur+","+spectateurs+",\'"+phoadresse+"\',\'"+description+"\')";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+// ////////////////////// S U P R E S S I O N   C I R C U I T
+
+module.exports.supprimerCircuit = function (cirnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			console.log(cirnum);
+			var sql ="DELETE FROM circuit WHERE cirnum="+cirnum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

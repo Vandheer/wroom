@@ -65,6 +65,8 @@ module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecuri
 	});
 };
 
+// ////////////////////// S U P R E S S I O N   P I L O T E
+
 module.exports.supprimerPilote = function (pilnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
@@ -81,6 +83,18 @@ module.exports.ajoutPhoto = function (pilnum, phoadresse, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
 			var sql ="INSERT INTO photo(phonum,pilnum,phosujet,phocommentaire,phoadresse) VALUES(1,"+pilnum+",'Photo identité','Photo officielle','"+phoadresse+"')";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+// ////////////////////// S U P R E S S I O N   P H O T O
+
+module.exports.supprimerPhoto = function (pilnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="DELETE FROM photo WHERE pilnum="+pilnum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

@@ -27,6 +27,26 @@ function getListeNationalite(callback){
     });
 };
 
+function supprimerPhoto(pilnum, callback){
+  model.supprimerPhoto(pilnum, function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+}
+
+function supprimerPilote(pilnum, callback){
+  model.supprimerPilote(pilnum, function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+}
+
 
 // ///////////////////////// A F F I C H A G E   P I L O T E S
 
@@ -70,19 +90,11 @@ module.exports.AjoutPilote =  function(request, response){
                 request.body['datenais'], request.body['nationalite'], request.body['ecurie'],
                 request.body['points'], request.body['poids'], request.body['taille'],
                 request.body['description'], function (err, result) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                callback(null, result);
+                    callback(null, result);
             });
         },
         function(result, callback){
             model.ajoutPhoto(result.insertId, request.file.filename, function(err, result){
-                if (err) {
-                    console.log(err);
-                    return;
-                }
                 callback(null, result);
             });
         }
@@ -96,13 +108,17 @@ module.exports.AjoutPilote =  function(request, response){
     });
 };
 
-// ///////////////////////// D E T A I L S   D ' U N   P I L O T E
+// ///////////////////////// S U P R E S S I O N   P I L O T E
 
 module.exports.SupprimerPilote = function(request, response){
     response.title = 'Supression du pilote';
     var pilnum = request.params.pilnum;
-    model.supprimerPilote(pilnum, function (err, result) {
-        if (err) {
+
+    async.parallel([
+        async.apply(supprimerPhoto, pilnum),
+        async.apply(supprimerPilote, pilnum)
+    ], function (err, result){
+        if(err){
             console.log(err);
             return;
         }

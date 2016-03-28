@@ -20,6 +20,18 @@ var pilotefile = multer.diskStorage({
     }
 });
 
+var circuitfile = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/image/circuit');
+    },
+    filename: function (req, file, cb) {
+        // Aucun fichier n'a le même nom
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+        });
+    }
+});
+
 // Routes
 module.exports = function(app){
 
@@ -34,13 +46,14 @@ module.exports = function(app){
     // Pilotes
     app.get('/pilotes', isAuthenticated, PiloteController.AfficherPilotes);
     app.get('/ajouterPilote', isAuthenticated, PiloteController.FormulairePilote);
-    app.post('/ajouterPilote', isAuthenticated, multer({ storage: pilotefile}).single('image'), PiloteController.AjoutPilote);
+    app.post('/ajouterPilote', isAuthenticated, multer({storage: pilotefile}).single('image'), PiloteController.AjoutPilote);
     app.get('/pilotes/supprimer/:pilnum',isAuthenticated, PiloteController.SupprimerPilote);
 
     // Circuits
     app.get('/circuits', isAuthenticated, CircuitController.AfficherCircuits);
     app.get('/ajouterCircuit', isAuthenticated, CircuitController.FormulaireCircuit);
-    app.post('/ajouterCircuit', isAuthenticated, CircuitController.AjoutCircuit);
+    app.post('/ajouterCircuit', isAuthenticated, multer({storage: circuitfile}).single('image'), CircuitController.AjoutCircuit);
+    app.get('/circuits/supprimer/:cirnum',isAuthenticated, CircuitController.SupprimerCircuit);
 
     app.get('/sponsors', isAuthenticated, SponsorController.Test);
 

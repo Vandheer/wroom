@@ -54,11 +54,11 @@ module.exports.getListePilotes = function (callback) {
 
 // ////////////////////// A J O U T   P I L O T E
 
-module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecurie, points, poids, taille, descr, callback) {
+module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecurie, points, poids, taille, description, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
 			var sql ="INSERT INTO pilote(pilnom, pilprenom, pildatenais, pilpoints, pilpoids, piltaille, piltexte, paynum, ecunum) "
-			+ "VALUES(\'"+nom+"\',\'"+prenom+"\',STR_TO_DATE(\'"+datenais+"\', '%d/%m/%Y'),"+points+","+poids+","+taille+",\'"+descr+"\',"+nationalite+","+ecurie+")";
+			+ "VALUES(\'"+nom+"\',\'"+prenom+"\',STR_TO_DATE(\'"+datenais+"\', '%d/%m/%Y'),"+points+","+poids+","+taille+",\'"+description+"\',"+nationalite+","+ecurie+")";
 			connexion.query(sql, callback);
 			connexion.release();
 		}

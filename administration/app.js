@@ -41,13 +41,37 @@ hbs = handlebars.create({
 
     partialsDir: ['views/partials/'], // le vues partielles (le code HTML qui se répète dans toutes les pages)
     helpers: {
-        // Test d'égalité
-        equals: function(a, b, options){
-            console.log(a + " " + b);
-            if(a == b){
-                return options.fn(this);
-            }else{
-                return options.inverse(this);
+        // Toutes les opérations logiques!! (pas toutes testées)
+        cond: function(a, op, b, options){
+            switch (op) {
+                case "==":
+                    return (a == b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "===":
+                
+                    return (a === b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "!=":
+                    return (a != b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "&&":
+                    return (a && b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "||":
+                    return (a || b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "<=":
+                    return (a <= b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case "<":
+                    return (a < b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case ">=":
+                    return (a >= b) ? options.fn(this) : options.inverse(this);
+                    break;
+                case ">":
+                    return (a > b) ? options.fn(this) : options.inverse(this);
+                    break;
             }
         }
     }

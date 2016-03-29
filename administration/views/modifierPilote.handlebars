@@ -16,57 +16,62 @@
 		</div>
 		<div class="input-style">
 			<label for="datenais">Date de naissance: </label>
-			<input name="datenais" pattern="[0-3][0-9]/[0,1][0-9]/[0-9]{4}" value="{{this.pildatenais}}" class="datepicker" required>
+			<input name="datenais" pattern="[0-3][0-9]/[0,1][0-9]/[0-9]{4}" value="{{detailsPilote.pildatenais}}" class="datepicker" required>
 		</div>
 		<div class="input-style">
 			<label for="nationalite">Nationalité: </label>
-            {{#if listeNationalite}}
+			{{#if listeNationalite}}
 			<select name="nationalite">
-				    {{#each listeNationalite}}
-				            <option value="{{this.paynum}}"
-                                {{#equals this.paynum detailsPilote.paynum}}
-                                    selected="selected"
-                                {{/equals}}
-                            > {{this.paynat}} </option>
-				    {{/each}}
+				{{#each listeNationalite}}
+					<option value="{{this.paynum}}"
+					{{#cond this.paynum "==" ../detailsPilote.paynum}}
+					selected="selected"
+					{{/cond}}
+					> {{this.paynat}} </option>
+				{{/each}}
 			</select>
-            {{/if}}
+			{{/if}}
 		</div>
 		<div class="input-style">
 			<label for="ecurie">Ecurie: </label>
 			<select name="ecurie">
 				{{#if listeEcurie}}
-				{{#each listeEcurie}}
-				<option value="{{this.ecunum}}"> {{this.ecunom}} </option>
-				{{/each}}
+					{{#each listeEcurie}}
+						<option value="{{this.ecunum}}"
+							{{#cond this.ecunum "==" ../detailsPilote.ecunum}}
+							selected="selected"
+							{{/cond}}
+					> {{this.ecunom}} </option>
+					{{/each}}
 				{{/if}}
 			</select>
 		</div>
 		<div class="input-style">
-			<label for="image">Image: </label>
-			<input type="file" name="image" required/>
-		</div>
-		<div class="input-style">
 			<label for="points">Points: </label>
-			<input name="points" pattern="[0-9]*" required> pts
+			<input name="points" pattern="[0-9]*"
+				{{#if detailsPilote.pilpoints}}
+					value="{{detailsPilote.pilpoints}}"
+				{{else}}
+					value="0"
+				{{/if}} required> pts
 		</div>
 		<div class="input-style">
 			<label for="poids">Poids: </label>
-			<input name="poids" pattern="[0-9,.]*" required> kg
+			<input name="poids" pattern="[0-9,.]*" value="{{detailsPilote.pilpoids}}" required> kg
 		</div>
 		<div class="input-style">
 			<label for="taille">Taille: </label>
-			<input name="taille" pattern="[0-9]*" required> cm
+			<input name="taille" pattern="[0-9]*" value="{{detailsPilote.piltaille}}" required> cm
 		</div>
 		<div class="input-style">
 			<label for="description">Description: </label>
-			<textarea rows="2" cols="40" name="description"></textarea>
+			<textarea rows="2" cols="40" name="description">{{detailsPilote.piltexte}}</textarea>
 		</div>
 	</div>
 	<div class="centermydiv">
-		<input type="submit" value="Ajouter" class="button-style">
+		<input type="submit" value="Modifier" class="button-style">
 	</div>
 </form>
 {{else}}
-    <p class="error">Une erreur est survenue</p>
+<p class="error">Une erreur est survenue</p>
 {{/if}}

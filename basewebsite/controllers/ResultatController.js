@@ -82,7 +82,7 @@ module.exports.AfficherResultat = function(request, response){
 
 		for(var i=0;i<listeTemps.length;i++){
 			listeTemps[i].place = i + 1;
-			if(i<10){
+			if(i<listePoints.length){
 				listeTemps[i].points = listePoints[i].ptnbpointsplace;
 			}else{
 				listeTemps[i].points = 0;

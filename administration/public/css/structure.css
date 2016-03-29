@@ -233,6 +233,10 @@ a:hover{
   font-weight: bold;
 }
 
+.spacer{
+    margin: 10px 0px;
+}
+
 .hidden{
   display: none;
 }

@@ -14,10 +14,6 @@ function hbsHelpers(handlebars) {
 
 module.exports = hbsHelpers;
 
-/*
-
-
-
 module.exports = function(){
     hbs.registerHelper('cond', function (v1, operator, v2, options) {
         switch (operator) {
@@ -42,4 +38,3 @@ module.exports = function(){
         }
     });
 };
-*/

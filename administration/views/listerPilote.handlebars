@@ -1,10 +1,12 @@
 <div class="centermydiv">
     <img src="image/cat_pilote.png" alt="un casque de pilote">
     <h1>Gestion des Pilotes</h1>
-    <a href="/ajouterPilote">
-      <img src="image/act_add.png" alt="ajouter" title="Ajouter"/>
-      Ajouter un pilote
-    </a>
+    <div class="spacer">
+        <a href="/ajouterPilote">
+          <img src="image/act_add.png" alt="ajouter" title="Ajouter"/>
+          Ajouter un pilote
+        </a>
+    </div>
   <table class="tablestyle">
     <thead>
       <tr>
@@ -22,7 +24,7 @@
         <td>{{this.pilprenom}}</td>
         <td>{{this.pildatenais}}</td>
         <td>
-          <a href="/pilotes/modifier/{{this.pilnum}}" class="modifier">
+          <a href="/modifierPilote/{{this.pilnum}}" class="modifier">
             <img src="image/act_edit.png" alt="modifier" title="Modifier"/>
             Modifier
           </a>

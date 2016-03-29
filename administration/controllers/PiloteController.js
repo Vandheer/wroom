@@ -47,6 +47,16 @@ function supprimerPilote(pilnum, callback){
   });
 }
 
+function getDetailsPilote(pilnum, callback){
+  model.getDetailsPilote(pilnum, function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(null, result);
+  });
+}
+
 
 // ///////////////////////// A F F I C H A G E   P I L O T E S
 
@@ -123,5 +133,27 @@ module.exports.SupprimerPilote = function(request, response){
             return;
         }
         response.redirect('/pilotes');
+    });
+};
+
+// ///////////////////////// M O D I F I E R   P I L O T E
+
+module.exports.ModifierPilote = function(request, response){
+    response.title = 'Modification d\'un pilote';
+    var pilnum = request.params.pilnum;
+
+    async.parallel([
+        async.apply(getDetailsPilote, pilnum),
+        getListeEcurie,
+        getListeNationalite
+    ], function (err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        response.detailsPilote = result[0][0];
+        response.listeEcurie = result[1];
+        response.listeNationalite = result[2];
+        response.render('modifierPilote', response);
     });
 };

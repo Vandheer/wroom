@@ -1,30 +1,36 @@
 <script src="/js/datePicker.js"></script>
 <div class="centermydiv">
-	<h1>Ajouter un pilote</h1>
+	<h1>Modifier un pilote</h1>
 </div>
+
+{{#if detailsPilote}}
 <form method="POST" enctype="multipart/form-data">
 	<div class="form-style">
 		<div class="input-style">
 			<label for="prenom">Prénom: </label>
-			<input name="prenom" pattern="[A-Za-z,-, ]*" required>
+			<input name="prenom" pattern="[A-Za-z,-, ]*" value="{{detailsPilote.pilnom}}" required>
 		</div>
 		<div class="input-style">
 			<label for="nom">Nom: </label>
-			<input name="nom" pattern="[A-Za-z,-, ]*" required>
+			<input name="nom" pattern="[A-Za-z,-, ]*" value="{{detailsPilote.pilprenom}}" required>
 		</div>
 		<div class="input-style">
 			<label for="datenais">Date de naissance: </label>
-			<input name="datenais" pattern="[0-3][0-9]/[0,1][0-9]/[0-9]{4}" class="datepicker" required>
+			<input name="datenais" pattern="[0-3][0-9]/[0,1][0-9]/[0-9]{4}" value="{{this.pildatenais}}" class="datepicker" required>
 		</div>
 		<div class="input-style">
 			<label for="nationalite">Nationalité: </label>
+            {{#if listeNationalite}}
 			<select name="nationalite">
-				{{#if listeNationalite}}
-				{{#each listeNationalite}}
-				<option value="{{this.paynum}}"> {{this.paynat}} </option>
-				{{/each}}
-				{{/if}}
+				    {{#each listeNationalite}}
+				            <option value="{{this.paynum}}"
+                                {{#equals this.paynum detailsPilote.paynum}}
+                                    selected="selected"
+                                {{/equals}}
+                            > {{this.paynat}} </option>
+				    {{/each}}
 			</select>
+            {{/if}}
 		</div>
 		<div class="input-style">
 			<label for="ecurie">Ecurie: </label>
@@ -61,3 +67,6 @@
 		<input type="submit" value="Ajouter" class="button-style">
 	</div>
 </form>
+{{else}}
+    <p class="error">Une erreur est survenue</p>
+{{/if}}

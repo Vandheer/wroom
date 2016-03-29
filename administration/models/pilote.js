@@ -32,7 +32,7 @@ module.exports.getPiloteByLettre =   function (data, callback) {
 module.exports.getDetailsPilote = function (pilnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT pilnom, pilprenom, DATE_FORMAT(pildatenais,\'%d/%m/%Y\') AS pildatenais, pilpoids, piltaille, piltexte, paynom FROM pilote p INNER JOIN pays pa ON pa.paynum = p.paynum"
+			var sql ="SELECT pilnom, pilprenom, DATE_FORMAT(pildatenais,\'%d/%m/%Y\') AS pildatenais, pilpoids, piltaille, piltexte, paynum, ecunum FROM pilote p"
 			+ " WHERE p.pilnum = " + pilnum;
 			connexion.query(sql, callback);
 			connexion.release();

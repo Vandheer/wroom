@@ -57,7 +57,6 @@ function getDetailsPilote(pilnum, callback){
   });
 }
 
-
 // ///////////////////////// A F F I C H A G E   P I L O T E S
 
 module.exports.AfficherPilotes = 	function(request, response){
@@ -156,4 +155,25 @@ module.exports.ModifierPilote = function(request, response){
         response.listeNationalite = result[2];
         response.render('modifierPilote', response);
     });
+};
+
+module.exports.Modifier = function(request, response){
+    response.title = 'Modification en cours';
+    var pilnum = request.params.pilnum;
+    var prenom = request.body.prenom;
+    var nom = request.body.nom;
+    var datenais = request.body.datenais;
+    var nationalite = request.body.nationalite;
+    var ecurie = request.body.ecurie;
+    var points = request.body.points;
+    var poids = request.body.poids;
+    var taille = request.body.taille;
+    var description = request.body.description;
+    model.modifierPilote(pilnum, prenom, nom, datenais, nationalite, ecurie, points, poids, taille, description, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+    });
+    response.redirect('/pilotes');
 };

@@ -49,7 +49,7 @@ module.exports = function(app){
     app.post('/ajouterPilote', isAuthenticated, multer({storage: pilotefile}).single('image'), PiloteController.AjoutPilote);
     app.get('/pilotes/supprimer/:pilnum',isAuthenticated, PiloteController.SupprimerPilote);
     app.get('/modifierPilote/:pilnum', isAuthenticated, PiloteController.ModifierPilote);
-
+    app.post('/modifierPilote/:pilnum', isAuthenticated, PiloteController.Modifier);
     // Circuits
     app.get('/circuits', isAuthenticated, CircuitController.AfficherCircuits);
     app.get('/ajouterCircuit', isAuthenticated, CircuitController.FormulaireCircuit);

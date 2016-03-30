@@ -4,15 +4,15 @@
 </div>
 
 {{#if detailsPilote}}
-<form method="POST" enctype="multipart/form-data">
+<form method="POST">
 	<div class="form-style">
 		<div class="input-style">
-			<label for="prenom">Prénom: </label>
-			<input name="prenom" pattern="[A-Za-z,-, ]*" value="{{detailsPilote.pilnom}}" required>
+			<label for="nom">Nom: </label>
+			<input name="nom" value="{{detailsPilote.pilnom}}" required>
 		</div>
 		<div class="input-style">
-			<label for="nom">Nom: </label>
-			<input name="nom" pattern="[A-Za-z,-, ]*" value="{{detailsPilote.pilprenom}}" required>
+			<label for="prenom">Prénom: </label>
+			<input name="prenom" value="{{detailsPilote.pilprenom}}" required>
 		</div>
 		<div class="input-style">
 			<label for="datenais">Date de naissance: </label>

@@ -8,11 +8,11 @@
 	<div class="form-style">
 		<div class="input-style">
 			<label for="nom">Nom: </label>
-			<input name="nom" value="{{detailsPilote.pilnom}}" required>
+			<input name="nom" value="{{detailsPilote.pilnom}}" pattern="[A-Za-z,-, ]*" required>
 		</div>
 		<div class="input-style">
 			<label for="prenom">Prénom: </label>
-			<input name="prenom" value="{{detailsPilote.pilprenom}}" required>
+			<input name="prenom" value="{{detailsPilote.pilprenom}}" pattern="[A-Za-z,-, ]*" required>
 		</div>
 		<div class="input-style">
 			<label for="datenais">Date de naissance: </label>

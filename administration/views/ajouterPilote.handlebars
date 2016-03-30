@@ -20,9 +20,9 @@
 			<label for="nationalite">Nationalité: </label>
 			<select name="nationalite">
 				{{#if listeNationalite}}
-				{{#each listeNationalite}}
-				<option value="{{this.paynum}}"> {{this.paynat}} </option>
-				{{/each}}
+					{{#each listeNationalite}}
+						<option value="{{this.paynum}}"> {{this.paynat}} </option>
+					{{/each}}
 				{{/if}}
 			</select>
 		</div>

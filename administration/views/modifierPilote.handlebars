@@ -21,15 +21,15 @@
 		<div class="input-style">
 			<label for="nationalite">Nationalité: </label>
 			{{#if listeNationalite}}
-			<select name="nationalite">
-				{{#each listeNationalite}}
-					<option value="{{this.paynum}}"
-					{{#cond this.paynum "==" ../detailsPilote.paynum}}
-					selected="selected"
-					{{/cond}}
-					> {{this.paynat}} </option>
-				{{/each}}
-			</select>
+				<select name="nationalite">
+					{{#each listeNationalite}}
+						<option value="{{this.paynum}}"
+						{{#cond this.paynum "==" ../detailsPilote.paynum}}
+							selected="selected"
+						{{/cond}}
+						> {{this.paynat}} </option>
+					{{/each}}
+				</select>
 			{{/if}}
 		</div>
 		<div class="input-style">

@@ -13,12 +13,12 @@ module.exports.getListeCircuit = function (callback) {
 	});
 };
 
-// ////////////////////// D E T A I L   D ' U N   C I R C U I T
+// ////////////////////// D E T A I L S   D ' U N   C I R C U I T
 
 module.exports.getDetailsCircuit = function (cirnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT cirnom, cirlongueur,cirnbspectateurs, cirtext, ciradresseimage, paynom  FROM circuit c "
+			var sql ="SELECT cirnom, cirlongueur, cirnbspectateurs, cirtext, ciradresseimage, paynom FROM circuit c "
 			+ "INNER JOIN pays p ON p.paynum = c.paynum WHERE cirnum = " + cirnum;
 			connexion.query(sql, callback);
 			connexion.release();
@@ -34,6 +34,19 @@ module.exports.ajoutCircuit = function (nom, pays, longueur, spectateurs, phoadr
 			console.log(nom+ pays+ longueur+ spectateurs+ description+ phoadresse);
 			var sql ="INSERT INTO circuit(cirnom, paynum, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) "
 			+ "VALUES(\'"+nom+"\',"+pays+","+longueur+","+spectateurs+",\'"+phoadresse+"\',\'"+description+"\')";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+// ////////////////////// M O D I F I E R   C I R C U I T
+
+module.exports.modifierCircuit = function (cirnum, nom, longueur, pays, spectateurs, description, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="UPDATE circuit SET cirnom=\'"+nom+"\', cirlongueur="+longueur+", cirnbspectateurs="+spectateurs
+			+ ", cirtext=\'"+description+"\', paynum="+pays+" WHERE cirnum="+cirnum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

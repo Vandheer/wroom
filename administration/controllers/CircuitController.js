@@ -30,6 +30,26 @@ function supprimerCircuit(cirnum, callback){
 }
 */
 
+function getListePays(callback){
+    nationalite.getListePays( function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback(null, result);
+    });
+};
+
+function getDetailsCircuit(cirnum, callback){
+    model.getDetailsCircuit(cirnum, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback(null, result);
+    });
+};
+
 // ////////////////////// L I S T E R     C I R C U I T S
 
 module.exports.ListerCircuit = function(request, response){
@@ -99,4 +119,42 @@ module.exports.SupprimerCircuit = function(request, response){
         }
         response.redirect('/circuits');
     });
+};
+
+// ///////////////////////// M O D I F I E R   C I R C U I T
+
+module.exports.ModifierCircuit = function(request, response){
+    response.title = 'Modification d\'un circuit';
+    var cirnum = request.params.cirnum;
+
+    async.parallel([
+        async.apply(getDetailsCircuit, cirnum),
+        getListePays
+    ], function (err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        response.detailsCircuit = result[0][0];
+        response.listePays = result[1];
+
+        response.render('modifierCircuit', response);
+    });
+};
+
+module.exports.Modifier = function(request, response){
+    response.title = 'Modification en cours';
+    var cirnum = request.params.cirnum;
+    var nom = request.body.nom;
+    var longueur = request.body.longueur;
+    var pays = request.body.pays;
+    var spectateurs = request.body.spectateurs;
+    var description = request.body.description;
+    model.modifierCircuit(cirnum, nom, longueur, pays, spectateurs, description, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+    });
+    response.redirect('/circuits');
 };

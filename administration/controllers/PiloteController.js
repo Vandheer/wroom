@@ -153,6 +153,7 @@ module.exports.ModifierPilote = function(request, response){
         response.detailsPilote = result[0][0];
         response.listeEcurie = result[1];
         response.listeNationalite = result[2];
+        
         response.render('modifierPilote', response);
     });
 };

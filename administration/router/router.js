@@ -50,11 +50,14 @@ module.exports = function(app){
     app.get('/pilotes/supprimer/:pilnum',isAuthenticated, PiloteController.SupprimerPilote);
     app.get('/modifierPilote/:pilnum', isAuthenticated, PiloteController.ModifierPilote);
     app.post('/modifierPilote/:pilnum', isAuthenticated, PiloteController.Modifier);
+
     // Circuits
     app.get('/circuits', isAuthenticated, CircuitController.AfficherCircuits);
     app.get('/ajouterCircuit', isAuthenticated, CircuitController.FormulaireCircuit);
     app.post('/ajouterCircuit', isAuthenticated, multer({storage: circuitfile}).single('image'), CircuitController.AjoutCircuit);
     app.get('/circuits/supprimer/:cirnum',isAuthenticated, CircuitController.SupprimerCircuit);
+    app.get('/modifierCircuit/:cirnum', isAuthenticated, CircuitController.ModifierCircuit);
+    app.post('/modifierCircuit/:cirnum', isAuthenticated, CircuitController.Modifier);
 
     app.get('/sponsors', isAuthenticated, SponsorController.Test);
 

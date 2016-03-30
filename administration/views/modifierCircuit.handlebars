@@ -1,0 +1,45 @@
+<div class="centermydiv">
+	<h1>Modifier un circuit</h1>
+</div>
+
+{{#if detailsCircuit}}
+<form method="POST">
+	<div class="form-style">
+		<div class="input-style">
+			<label for="nom">Nom: </label>
+			<input name="nom" pattern="[A-Za-z,-, ]*" value="{{detailsCircuit.cirnom}}" required>
+		</div>
+		<div class="input-style">
+			<label for="longueur">Longueur: </label>
+			<input name="longueur" pattern="[0-9]*" value="{{detailsCircuit.cirlongueur}}" required> m
+		</div>
+		<div class="input-style">
+			<label for="pays">Pays: </label>
+			{{#if listePays}}
+				<select name="pays">
+					{{#each listePays}}
+						<option value="{{this.paynum}}"
+						{{#cond this.paynum "==" ../detailsCircuit.paynum}}
+							selected="selected"
+						{{/cond}}
+						> {{this.paynom}} </option>
+					{{/each}}
+				</select>
+			{{/if}}
+		</div>
+		<div class="input-style">
+			<label for="spectateurs">Nombre de spectateurs: </label>
+			<input name="spectateurs" pattern="[0-9]*" value="{{detailsCircuit.cirnbspectateurs}}" required> personnes
+		</div>
+		<div class="input-style">
+			<label for="description">Description: </label>
+			<textarea rows="2" cols="40" name="description">{{detailsCircuit.cirtext}}</textarea>
+		</div>
+	</div>
+	<div class="centermydiv">
+		<input type="submit" value="Modifier" class="button-style">
+	</div>
+</form>
+{{else}}
+<p class="error">Une erreur est survenue</p>
+{{/if}}

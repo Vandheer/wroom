@@ -39,7 +39,7 @@ module.exports.ajoutPilote = function (prenom, nom, datenais, nationalite, ecuri
 	});
 };
 
-// ////////////////////// MODIFIER   P I L O T E
+// ////////////////////// M O D I F I E R   P I L O T E
 
 module.exports.modifierPilote = function (pilnum, prenom, nom, datenais, nationalite, ecurie, points, poids, taille, description, callback) {
 	db.getConnection(function(err, connexion){

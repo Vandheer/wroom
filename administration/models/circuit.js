@@ -18,7 +18,7 @@ module.exports.getListeCircuit = function (callback) {
 module.exports.getDetailsCircuit = function (cirnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT cirnom, cirlongueur, cirnbspectateurs, cirtext, ciradresseimage, paynom FROM circuit c "
+			var sql ="SELECT cirnom, cirlongueur, cirnbspectateurs, cirtext, ciradresseimage, paynom, c.paynum FROM circuit c "
 			+ "INNER JOIN pays p ON p.paynum = c.paynum WHERE cirnum = " + cirnum;
 			connexion.query(sql, callback);
 			connexion.release();

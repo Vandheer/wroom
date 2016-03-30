@@ -137,7 +137,6 @@ module.exports.ModifierCircuit = function(request, response){
         }
         response.detailsCircuit = result[0][0];
         response.listePays = result[1];
-
         response.render('modifierCircuit', response);
     });
 };

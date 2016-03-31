@@ -1,5 +1,8 @@
 var ecurie = require('../models/ecurie.js');
+var nationalite = require('../models/nationalite.js');
 var async = require('async');
+
+/*------------------------------ FONCTIONS -----------------------------------*/
 
 function getListeEcurie(callback){
   ecurie.getListeEcurie( function (err, result) {
@@ -77,18 +80,47 @@ function getVoituresByEcunum(ecunum, callback){
   });
 }
 
-// //////////////////////// L I S T E R  E C U R I E S
 
-module.exports.ListerEcurie = function(request, response){
+// ///////////////////////// A F F I C H A G E   E C U R I E S
+
+module.exports.AfficherEcuries =  function(request, response){
   response.title = 'Liste des écuries';
-
   ecurie.getListeEcurie( function (err, result) {
     if (err) {
       console.log(err);
       return;
     }
-    response.listeEcurie = result;
+    response.listeEcuries = result;
     response.render('listerEcurie', response);
+  });
+};
+
+// ///////////////////////// A F F I C H A G E   F O R M U L A I R E
+
+module.exports.FormulaireEcurie =  function(request, response){
+  response.title = 'Ajout d\'une écurie';
+  nationalite.getListePays( function (err, result) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    response.listePays = result;
+    response.render('ajouterEcurie', response);
+  });
+};
+
+// ///////////////////////// A J O U T   E C U R I E
+
+module.exports.AjoutEcurie =  function(request, response){
+  response.title = 'Ajout d\'une écurie';
+
+  ecurie.ajoutEcurie(request.body['nom'], request.body['directeur'], request.body['adrsiege'],
+    request.body['points'], request.body['pays'], request.file.filename, function (err, result) {
+      if (err) {
+          console.log(err);
+          return;
+      }
+      response.redirect('/ecuries');
   });
 };
 

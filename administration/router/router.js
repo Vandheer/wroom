@@ -32,6 +32,18 @@ var circuitfile = multer.diskStorage({
     }
 });
 
+var ecuriefile = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/image/ecurie');
+    },
+    filename: function (req, file, cb) {
+        // Aucun fichier n'a le même nom
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+        });
+    }
+});
+
 // Routes
 module.exports = function(app){
 
@@ -59,6 +71,12 @@ module.exports = function(app){
     app.get('/modifierCircuit/:cirnum', isAuthenticated, CircuitController.ModifierCircuit);
     app.post('/modifierCircuit/:cirnum', isAuthenticated, CircuitController.Modifier);
 
+    // Ecuries
+    app.get('/ecuries', isAuthenticated, EcurieController.AfficherEcuries);
+    app.get('/ajouterEcurie', isAuthenticated, EcurieController.FormulaireEcurie);
+    app.post('/ajouterEcurie', isAuthenticated, multer({storage: ecuriefile}).single('image'), EcurieController.AjoutEcurie);
+
+    // Sponsors
     app.get('/sponsors', isAuthenticated, SponsorController.Test);
 
     // tout le reste

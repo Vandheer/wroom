@@ -1,4 +1,4 @@
-<h1>Ajouter un circuit</h1>
+<h1>Ajouter une écurie</h1>
 <form method="POST" enctype="multipart/form-data">
 	<div class="form-style">
 		<div class="input-style">
@@ -6,8 +6,16 @@
 			<input name="nom" pattern="[A-Za-z,-, ]*" required>
 		</div>
 		<div class="input-style">
-			<label for="longueur">Longueur: </label>
-			<input name="longueur" pattern="[0-9]*" required> m
+			<label for="directeur">Directeur: </label>
+			<input name="directeur" pattern="[A-Za-z,-, ]*" required>
+		</div>
+		<div class="input-style">
+			<label for="adrsiege">Adresse du siège: </label>
+			<input name="adrsiege" pattern="[A-Za-z,-, ,0-9]*" required>
+		</div>
+		<div class="input-style">
+			<label for="points">Points: </label>
+			<input name="points" pattern="[0-9]*" required> pts
 		</div>
 		<div class="input-style">
 			<label for="pays">Pays: </label>
@@ -22,14 +30,6 @@
 		<div class="input-style">
 			<label for="image">Image:</label>
 			<input type="file" name="image" required/>
-		</div>
-		<div class="input-style">
-			<label for="spectateurs">Nombre de spectateurs: </label>
-			<input name="spectateurs" pattern="[0-9]*" required> personnes
-		</div>
-		<div class="input-style">
-			<label for="description">Description: </label>
-			<textarea rows="2" cols="40" name="description"></textarea>
 		</div>
 	</div>
 	<div class="centermydiv">

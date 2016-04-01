@@ -84,6 +84,10 @@ module.exports = function(app){
     app.get('/modifierSponsor/:sponum/:ecunum', isAuthenticated, SponsorController.ModifierSponsor);
     app.post('/modifierSponsor/:sponum/:ecunum', isAuthenticated, SponsorController.Modifier);
 
+    // Résultats
+    app.get('/resultats', isAuthenticated, ResultatController.ListerGrandPrix);
+    app.post('/resultats', isAuthenticated, ResultatController.RedirectGrandPrix);
+
     // tout le reste
     app.get('*', isAuthenticated, HomeController.Index);
     app.post('*', isAuthenticated, HomeController.Index);

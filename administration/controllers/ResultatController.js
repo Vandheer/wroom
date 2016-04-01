@@ -47,9 +47,9 @@ function getPoints(callback){
 	});
 }
 
-// ////////////////////////// L I S T E R    R E S U L T A T S
+// //////////////////////////
 
-module.exports.ListerResultat = function(request, response){
+module.exports.ListerGrandPrix = function(request, response){
 	response.title = 'Résultats des grands prix';
 	model.getListeGrandPrix( function (err, result) {
 		if (err) {
@@ -60,6 +60,13 @@ module.exports.ListerResultat = function(request, response){
 		response.render('listerResultat', response);
 	});
 };
+
+module.exports.RedirectGrandPrix = function(request, response){
+	response.title = 'Résultats des grands prix';
+	var gpnum = request.body.grandprix;
+	response.redirect('/listerResultat/'+gpnum);
+};
+
 
 // ////////////////////////// A F F I C H E R    R E S U L T A T S
 

@@ -22,7 +22,11 @@
       <tr>
         <td>{{this.ecunom}}</td>
         <td>{{this.ecunomdir}}</td>
-        <td>{{this.ecupoints}}</td>
+        {{#if this.ecupoints}}
+            <td>{{this.ecupoints}}</td>
+        {{else}}
+            <td>0</td>
+        {{/if}}
         <td>
           <a href="/modifierEcurie/{{this.ecunum}}" class="modifier">
             <img src="image/act_edit.png" alt="modifier" title="Modifier"/>

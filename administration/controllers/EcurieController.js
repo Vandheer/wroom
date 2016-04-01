@@ -4,6 +4,17 @@ var async = require('async');
 
 /*------------------------------ FONCTIONS -----------------------------------*/
 
+function getListePays(callback){
+    nationalite.getListePays( function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback(null, result);
+    });
+};
+
+
 function getListeEcurie(callback){
   ecurie.getListeEcurie( function (err, result) {
     if (err) {
@@ -153,4 +164,52 @@ module.exports.DetailsEcurie = function(request, response){
     response.listeEcurie = result[6];
     response.render('listerEcurie', response);
   });
+};
+
+
+module.exports.SupprimerEcurie = function(request, response){
+    response.title = 'Supression de l\'écurie';
+    var ecunum = request.params.ecunum;
+    ecurie.supprimerEcurie(ecunum, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        response.redirect('/ecuries');
+    });
+};
+
+module.exports.ModifierEcurie = function(request, response){
+    response.title = 'Modification d\'une ecurie';
+    var ecunum = request.params.ecunum;
+
+    async.parallel([
+        async.apply(getDetailsEcurie, ecunum),
+        getListePays
+    ], function (err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        response.detailsEcurie = result[0][0];
+        response.listePays = result[1];
+        response.render('modifierEcurie', response);
+    });
+};
+
+module.exports.Modifier = function(request, response){
+    response.title = 'Modification en cours';
+    var ecunum = request.params.ecunum;
+    var nom = request.body.nom;
+    var nomdir = request.body.directeur;
+    var pays = request.body.pays;
+    var adr = request.body.adrsiege;
+    var pts = request.body.points;
+    ecurie.modifierEcurie(ecunum, nom, nomdir, adr, pts, pays, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+    });
+    response.redirect('/ecuries');
 };

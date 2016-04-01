@@ -58,7 +58,6 @@ module.exports.modifierCircuit = function (cirnum, nom, longueur, pays, spectate
 module.exports.supprimerCircuit = function (cirnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			console.log(cirnum);
 			var sql ="DELETE FROM circuit WHERE cirnum="+cirnum;
 			connexion.query(sql, callback);
 			connexion.release();

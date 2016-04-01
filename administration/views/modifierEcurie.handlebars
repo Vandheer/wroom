@@ -1,0 +1,50 @@
+<div class="centermydiv">
+    <h1>Modifier une écurie</h1>
+</div>
+{{#if detailsEcurie}}
+<form method="POST">
+    <div class="form-style">
+        <div class="input-style">
+            <label for="nom">Nom: </label>
+            <input name="nom" value="{{detailsEcurie.ecunom}}" required>
+        </div>
+        <div class="input-style">
+            <label for="directeur">Directeur: </label>
+            <input name="directeur" value="{{detailsEcurie.ecunomdir}}" required>
+        </div>
+        <div class="input-style">
+            <label for="adrsiege">Adresse du siège: </label>
+            <input name="adrsiege" value="{{detailsEcurie.ecuadrsiege}}" required>
+        </div>
+        <div class="input-style">
+            <label for="points">Points: </label>
+            <input name="points" pattern="[0-9]*"
+                {{#if detailsEcurie.ecupoints}}
+                 value="{{detailsEcurie.ecupoints}}"
+                {{else}}
+                 value="0"
+                {{/if}}
+                required> pts
+        </div>
+        <div class="input-style">
+            <label for="pays">Pays: </label>
+            <select name="pays">
+                {{#if listePays}}
+                    {{#each listePays}}
+                        <option value="{{this.paynum}}"
+                        {{#cond this.paynum "==" ../detailsEcurie.paynum}}
+                        selected="selected"
+                        {{/cond}}
+                        > {{this.paynom}} </option>
+                    {{/each}}
+                {{/if}}
+            </select>
+        </div>
+    </div>
+    <div class="centermydiv">
+        <input type="submit" value="Modifier" class="button-style">
+    </div>
+</form>
+{{else}}
+<p class="error">Une erreur est survenue</p>
+{{/if}}

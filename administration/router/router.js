@@ -75,6 +75,9 @@ module.exports = function(app){
     app.get('/ecuries', isAuthenticated, EcurieController.AfficherEcuries);
     app.get('/ajouterEcurie', isAuthenticated, EcurieController.FormulaireEcurie);
     app.post('/ajouterEcurie', isAuthenticated, multer({storage: ecuriefile}).single('image'), EcurieController.AjoutEcurie);
+    app.get('/ecuries/supprimer/:ecunum',isAuthenticated, EcurieController.SupprimerEcurie);
+    app.get('/modifierEcurie/:ecunum', isAuthenticated, EcurieController.ModifierEcurie);
+    app.post('/modifierEcurie/:ecunum', isAuthenticated, EcurieController.Modifier);
 
     // Sponsors
     app.get('/sponsors', isAuthenticated, SponsorController.Test);

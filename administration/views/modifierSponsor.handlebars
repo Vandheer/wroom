@@ -1,0 +1,38 @@
+<script src="/js/datePicker.js"></script>
+<div class="centermydiv">
+    <h1>Modifier un sponsor</h1>
+</div>
+
+{{#if detailsSponsor}}
+<form method="POST">
+    <div class="form-style">
+        <div class="input-style">
+            <label for="nom">Nom: </label>
+            <input name="nom" value="{{detailsSponsor.sponom}}" required>
+        </div>
+        <div class="input-style">
+            <label for="secteur">Secteur d'activité: </label>
+            <input name="secteur" value="{{detailsSponsor.sposectactivite}}" required>
+        </div>
+        <div class="input-style">
+            <label for="ecurie">Sponsorise: </label>
+            {{#if listeEcurie}}
+            <select name="ecurie">
+                {{#each listeEcurie}}
+                <option value="{{this.ecunum}}"
+                {{#cond this.ecunum "==" ../ecunum}}
+                selected="selected"
+                {{/cond}}
+                > {{this.ecunom}} </option>
+                {{/each}}
+            </select>
+            {{/if}}
+        </div>
+        <div class="centermydiv">
+            <input type="submit" value="Modifier" class="button-style">
+        </div>
+    </div>
+</form>
+{{else}}
+<p class="error">Une erreur est survenue</p>
+{{/if}}

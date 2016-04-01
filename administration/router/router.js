@@ -78,6 +78,8 @@ module.exports = function(app){
 
     // Sponsors
     app.get('/sponsors', isAuthenticated, SponsorController.Test);
+    app.get('/modifierSponsor/:sponum/:ecunum', isAuthenticated, SponsorController.ModifierSponsor);
+    app.post('/modifierSponsor/:sponum/:ecunum', isAuthenticated, SponsorController.Modifier);
 
     // tout le reste
     app.get('*', isAuthenticated, HomeController.Index);

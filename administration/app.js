@@ -5,6 +5,7 @@ bodyParser      = require('body-parser'), //pour récupérer les résultats des 
 handlebars  	  = require('express-handlebars'), hbs,
 http = require('http'),
 socket = require('socket.io'),
+async = require('async'),
 path = require('path');
 
 var app = express();
@@ -45,33 +46,33 @@ hbs = handlebars.create({
         cond: function(a, op, b, options){
             switch (op) {
                 case "==":
-                    return (a == b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a == b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "===":
-                
-                    return (a === b) ? options.fn(this) : options.inverse(this);
-                    break;
+
+                return (a === b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "!=":
-                    return (a != b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a != b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "&&":
-                    return (a && b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a && b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "||":
-                    return (a || b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a || b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "<=":
-                    return (a <= b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a <= b) ? options.fn(this) : options.inverse(this);
+                break;
                 case "<":
-                    return (a < b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a < b) ? options.fn(this) : options.inverse(this);
+                break;
                 case ">=":
-                    return (a >= b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a >= b) ? options.fn(this) : options.inverse(this);
+                break;
                 case ">":
-                    return (a > b) ? options.fn(this) : options.inverse(this);
-                    break;
+                return (a > b) ? options.fn(this) : options.inverse(this);
+                break;
             }
         }
     }
@@ -89,45 +90,82 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 
 var io = socket.listen(server);
-
+// Etudier si il y a possibilité de mettre ça dans un fichier indépendant
 io.sockets.on('connection', function(client){
     // Messages reçus
 
+    // Ajout sponsor
     client.on('ajouter-sponsor', function(data){
         if(!data.sponom || !data.sposectactivite){
             client.emit('ajouter-sponsor', { success: false});
         }
         else{
             var sponsor = require('./models/sponsor.js');
-            sponsor.ajouterSponsor(data.sponom, data.sposectactivite, function (err, result) {
-                if (err) {
-                    console.log(err);
-                    return;
+            async.waterfall([
+                function(callback){
+                    sponsor.ajouterSponsor(data.sponom, data.sposectactivite, function (err, result) {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        callback(null, result);
+                    });
+                },
+                function(result, callback){
+                    var lastId = result.insertId;
+                    sponsor.ajouterFinance(lastId, data.ecunum, function(err, result){
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        result.lastId = lastId;
+                        callback(null, result);
+                    });
                 }
-                var lastid = result.insertId
+            ],function(err, result){
                 client.emit('ajouter-sponsor', {
                     success: true,
                     sponom: data.sponom,
                     sposectactivite: data.sposectactivite,
-                    sponum: lastid
+                    ecunom: data.ecunom,
+                    ecunum: data.ecunum,
+                    sponum: result.lastId
                 });
             });
         }
     });
 
+    // Suppression sponsor
     client.on('supprimer-sponsor', function(data){
         var sponsor = require('./models/sponsor.js');
+        // Vérif sponsor
         sponsor.existsSponsor(data.num_sponsor, function (err, result) {
             if (err) {
                 console.log(err);
                 return;
             }
             if(result.length != 0){
-                sponsor.supprimerSponsor(data.num_sponsor, function (err, result) {
-                    if (err) {
-                        console.log(err);
-                        return;
+                // /!\ Ici series à cause des problèmes de foreign key
+                async.series([
+                    function(callback){
+                        sponsor.supprimerFinance(data.num_sponsor, data.ecunum, function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            callback(null, result);
+                        });
+                    },
+                    function(callback){
+                        sponsor.supprimerSponsor(data.num_sponsor, function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            callback(null, result);
+                        });
                     }
+                ],function(err, result){
                     client.emit('supprimer-sponsor', {
                         sponum: data.num_sponsor
                     });

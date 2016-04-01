@@ -1,55 +1,65 @@
 <script src="/socket.io/socket.io.js"></script>
+<script>var listeSponsor = {{listeSponsors}}</script>
 <script src="js/dynamic.js"></script>
 
 <div class="centermydiv">
     <img src="image/cat_sponsor.png" alt="une poignée de main">
     <h1>Gestion des Sponsors</h1>
-  <div class="warning">Cette page nécessite JavaScript pour fonctionner.</div>
-  <table class="tablestyle">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Secteur d'activité</th>
-        <th>Action</th>
-        <th class="hidden">ID</th>
-      </tr>
-    </thead>
-    <tbody name="table-start">
-      {{#if listeSponsors}}
-      {{#each listeSponsors}}
-      <tr>
-        <td>{{this.sponom}}</td>
-        <td>{{this.sposectactivite}}</td>
-        <td>
-          <a href="#table-start" class="modifier">
-            <img src="image/act_edit.png" alt="modifier" title="Modifier"/>
-            Modifier
-          </a>
-          <a href="#table-start" class="supprimer">
-            <img src="image/act_delete.png" alt="supprimer" title="Supprimer"/>
-            Supprimer
-          </a>
-        </td>
-        <td class="hidden">{{this.sponum}}</td>
-      </tr>
-      {{/each}}
-      {{/if}}
-    <tr>
-      <td>
-        <input name="sponom" id="sponom" required>
-      </td>
-      <td>
-        <input name="sposectactivite" id="sposectactivite" required>
-      </td>
-      <td name="table-end">
-        <a href="#table-end" class="ajouter">
-          <img src="image/act_add.png" alt="ajouter" title="Ajouter"/>
-          Ajouter
-        </a>
-      </td>
-      <td class="hidden"></td>
-    </tr>
-  </tbody>
-  </table>
-</div>
-<br class="myboth" />
+    <div class="warning">Cette page nécessite JavaScript pour fonctionner.</div>
+    <div class="spacer">L'édition n'est pas dynammique</div>
+    <table class="tablestyle">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Secteur d'activité</th>
+                <th>Ecurie</th>
+                <th>Action</th>
+                <th class="hidden">ID</th>
+            </tr>
+        </thead>
+        <tbody name="table-start">
+            {{#if listeSponsors}}
+            {{#each listeSponsors}}
+            <tr>
+                <td>{{this.sponom}}</td>
+                <td>{{this.sposectactivite}}</td>
+                <td ecunum="{{this.ecunum}}">{{this.ecunom}}</td>
+                <td>
+                    <a href="/modifierSponsor/{{this.sponum}}/{{this.ecunum}}" class="modifier">
+                        <img src="image/act_edit.png" alt="modifier" title="Modifier"/>
+                        Modifier
+                    </a>
+                    <a href="#table-start" class="supprimer">
+                        <img src="image/act_delete.png" alt="supprimer" title="Supprimer"/>
+                        Supprimer
+                    </a>
+                </td>
+                <td class="hidden">{{this.sponum}}</td>
+            </tr>
+            {{/each}}
+            {{/if}}
+            <tr>
+                <td>
+                    <input name="sponom" id="sponom" required>
+                </td>
+                <td>
+                    <input name="sposectactivite" id="sposectactivite" required>
+                </td>
+                <td>
+                    <select name="ecunum" id="ecunum">
+                        {{#each listeEcuries}}
+                            <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+                        {{/each}}
+                    </td>
+                    <td name="table-end">
+                        <a href="#table-end" class="ajouter">
+                            <img src="image/act_add.png" alt="ajouter" title="Ajouter"/>
+                            Ajouter
+                        </a>
+                    </td>
+                    <td class="hidden"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br class="myboth" />

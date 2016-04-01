@@ -87,6 +87,9 @@ module.exports = function(app){
     // Résultats
     app.get('/resultats', isAuthenticated, ResultatController.ListerGrandPrix);
     app.post('/resultats', isAuthenticated, ResultatController.RedirectGrandPrix);
+    app.get('/listerResultat/:gpnum', isAuthenticated, ResultatController.ListerResultat);
+    app.post('/listerResultat/:gpnum', isAuthenticated, ResultatController.AjouterResultat);
+    app.get('/supprimerResultat/:gpnum/:pilnum/:points', isAuthenticated, ResultatController.SupprimerResultat);
 
     // tout le reste
     app.get('*', isAuthenticated, HomeController.Index);

@@ -19,7 +19,7 @@ module.exports.getDetailsPilote = function (pilnum, callback) {
 module.exports.getListePilotes = function (callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT pilnum, pilnom, pilprenom, DATE_FORMAT(pildatenais,\'%d/%m/%Y\') AS pildatenais FROM pilote";
+			var sql ="SELECT pilnum, pilnom, pilprenom, DATE_FORMAT(pildatenais,\'%d/%m/%Y\') AS pildatenais FROM pilote ORDER BY pilnom ASC";
 			connexion.query(sql, callback);
 			connexion.release();
 		}
@@ -77,19 +77,6 @@ module.exports.ajoutPhoto = function (pilnum, phoadresse, callback) {
 	});
 };
 
-// ////////////////////// S U P R E S S I O N   P H O T O
-
-module.exports.supprimerPhoto = function (pilnum, callback) {
-	db.getConnection(function(err, connexion){
-		if(!err){
-			var sql ="DELETE FROM photo WHERE pilnum="+pilnum;
-			connexion.query(sql, callback);
-			connexion.release();
-		}
-	});
-};
-
-
 // ////////////////////// S P O N S O R S   D ' U N   P I L O T E
 
 module.exports.getSponsorsByPilnum = function (pilnum, callback) {
@@ -108,6 +95,16 @@ module.exports.getPhotoPrincipaleByPilote = function (pilnum, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
 			var sql ="SELECT phoadresse FROM photo WHERE pilnum = " + pilnum + " AND phonum = 1";
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+module.exports.getEcuriePilote = function (pilnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="SELECT ecunum FROM pilote WHERE pilnum = " + pilnum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

@@ -42,6 +42,7 @@ hbs = handlebars.create({
 
     partialsDir: ['views/partials/'], // le vues partielles (le code HTML qui se répète dans toutes les pages)
     helpers: {
+
         // Toutes les opérations logiques!! (pas toutes testées)
         cond: function(a, op, b, options){
             switch (op) {

@@ -1,0 +1,50 @@
+<div class="centermydiv">
+    <h1>Saisie des résultats</h1>
+    <div class="warning">Le mauvais nombre de points sera ajouté à l'écurie si
+        on entre un temps inférieur au dernier temps actuel</div>
+</div>
+<table class="tablestyle">
+    <tr>
+        <th>Place</th>
+        <th>Pilote</th>
+        <th>Temps</th>
+        <th>Points</th>
+        <th></th>
+    </tr>
+    {{#if listeResultat}}
+    {{#each listeResultat}}
+    <tr>
+        <td>{{this.place}}</td>
+        <td>{{this.pilnom}}</td>
+        <td>{{this.tempscourse}}</td>
+        <td>{{this.points}}</td>
+        <td>
+            <a href="/supprimerResultat/{{../gpnum}}/{{this.pilnum}}/{{this.points}}" class="modifier">
+                <img src="/image/act_delete.png" alt="supprimer" title="Supprimer"/>
+            </a>
+        </td>
+    </tr>
+    {{/each}}
+    {{/if}}
+    <tr>
+        <form method="post">
+            <td>{{lastPlace}}</td>
+            <td>
+                <select name="pilote">
+                    {{#if listePilotes}}
+                    {{#each listePilotes}}
+                    <option value="{{this.pilnum}}">{{this.pilnom}}</option>
+                    {{/each}}
+                    {{/if}}
+                </select>
+            </td>
+            <td>
+                <input pattern="[0-9]*" name="heures" maxlength="2" size="2" required> :
+                <input pattern="[0-9]*" name="minutes" maxlength="2" size="2" required> :
+                <input pattern="[0-9]*" name="secondes" maxlength="2" size="2" required>
+            </td>
+            <td><input class="hidden" name="lastPoints" value="{{lastPoints}}"></td>
+            <td><input type="submit" value="OK"></td>
+        </form>
+    </tr>
+</table>

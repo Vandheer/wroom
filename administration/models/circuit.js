@@ -6,7 +6,7 @@ var db = require('../configDb');
 module.exports.getListeCircuit = function (callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT cirnum, cirnom, cirlongueur, cirnbspectateurs FROM circuit";
+			var sql ="SELECT cirnum, cirnom, cirlongueur, cirnbspectateurs FROM circuit ORDER BY cirnom ASC";
 			connexion.query(sql, callback);
 			connexion.release();
 		}

@@ -5,7 +5,7 @@ var db = require('../configDb');
 module.exports.getListeEcurie = function (callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			var sql ="SELECT ecunum, ecunom, ecunomdir, ecupoints FROM ecurie";
+			var sql ="SELECT ecunum, ecunom, ecunomdir, ecupoints FROM ecurie ORDER BY ecunom ASC";
 			connexion.query(sql, callback);
 			connexion.release();
 		}
@@ -53,6 +53,16 @@ module.exports.modifierEcurie = function (ecunum, ecunom, ecunomdir, ecuadrsiege
 		if(!err){
 			var sql ="UPDATE ecurie SET ecunom='"+ecunom+"', ecunomdir='"+ecunomdir+"', ecuadrsiege='"
 			+ecuadrsiege+"', ecupoints='"+ecupoints+"', paynum='"+paynum+"' WHERE ecunum = " + ecunum;
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+module.exports.changerPointsEcurie = function (ecunum , points, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="UPDATE ecurie SET ecupoints=ecupoints+"+points+" WHERE ecunum="+ecunum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

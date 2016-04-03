@@ -110,3 +110,13 @@ module.exports.getEcuriePilote = function (pilnum, callback) {
 		}
 	});
 };
+
+module.exports.supprimerPhoto = function (pilnum, callback) {
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql ="DELETE FROM photo WHERE pilnum="+pilnum;
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};

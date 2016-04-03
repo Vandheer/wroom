@@ -29,7 +29,6 @@ module.exports.getDetailsEcurie = function (ecunum, callback) {
 module.exports.ajoutEcurie = function (nom, directeur, adrsiege, points, pays, phoadresse, callback) {
 	db.getConnection(function(err, connexion){
 		if(!err){
-			console.log(nom+ directeur+ adrsiege+ points+ pays+ phoadresse);
 			var sql ="INSERT INTO ecurie(fpnum, ecunom, ecunomdir, ecuadrsiege, ecupoints, paynum, ecuadresseimage) "
 			+ "VALUES(1,\'"+nom+"\',\'"+directeur+"\',\'"+adrsiege+"\',"+points+","+pays+",\'"+phoadresse+"\')";
 			connexion.query(sql, callback);

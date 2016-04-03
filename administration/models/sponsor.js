@@ -35,8 +35,7 @@ module.exports.ajouterSponsor = function(sponom, sposectactivite, callback){
 
 module.exports.ajouterFinance = function(sponum, ecunum, callback){
 	db.getConnection(function(err, connexion){
-		if(!err){
-			var sql = "INSERT INTO finance(sponum, ecunum) VALUES(\'"+sponum+"\',\'"
+		if(!err){			var sql = "INSERT INTO finance(sponum, ecunum) VALUES(\'"+sponum+"\',\'"
 			+ecunum+"\')";
 			connexion.query(sql, callback);
 			connexion.release();
@@ -58,6 +57,16 @@ module.exports.supprimerFinance = function(sponum, ecunum, callback){
 	db.getConnection(function(err, connexion){
 		if(!err){
 			var sql = "DELETE FROM finance WHERE sponum="+sponum+" AND ecunum="+ecunum;
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	});
+};
+
+module.exports.supprimerSponsorPilote = function(sponum, callback){
+	db.getConnection(function(err, connexion){
+		if(!err){
+			var sql = "DELETE FROM sponsorise WHERE sponum="+sponum;
 			connexion.query(sql, callback);
 			connexion.release();
 		}

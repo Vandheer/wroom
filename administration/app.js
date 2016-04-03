@@ -149,6 +149,15 @@ io.sockets.on('connection', function(client){
                 // /!\ Ici series à cause des problèmes de foreign key
                 async.series([
                     function(callback){
+                        sponsor.supprimerSponsorPilote(data.num_sponsor, function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            callback(null, result);
+                        });
+                    },
+                    function(callback){
                         sponsor.supprimerFinance(data.num_sponsor, data.ecunum, function (err, result) {
                             if (err) {
                                 console.log(err);

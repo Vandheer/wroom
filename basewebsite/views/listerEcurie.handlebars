@@ -1,84 +1,71 @@
-<!--
-* Celle vue permet d'afficher les écuries
-* la méthode ListerEcurie du controleur : villeControleur.js
-* lui passe ListerEcurie.
-* listeEcurie contient par exemple :
-* [
-* { ecunum: 5, payadrdrap: 'AAA' },
-* { ecunum: 6, payadrdrap: 'BAA' },
-* { ecunum: 7, payadrdrap: 'ACA' }
-*  ]
-*
--->
 
-		<h1>Liste des écuries enregistrées</h1>
-		{{#if detailsEcurie}}
-		<div class="wrapper">
-			<div>
-			    <img src="/image/ecurie/{{detailsEcurie.ecuadresseimage}}" alt="logo de l'écurie" class="circuitimg" />
-			    {{#if pilotes}}
-					<p>Pilotes:</p>
-					{{#each pilotes}}
-						<p>
-							<a href="/detailsPilote/{{this.pilnum}}" class="hover">
-								{{this.pilprenom}} {{this.pilnom}}
-								<span>
-									<img src="/image/pilote/{{this.phoadresse}}" alt="photo du pilote"/>
-								</span>
-							</a>
-						</p>
-					{{/each}}
-				{{/if}}
-				{{#if voitures}}
-				<div class="wrapper">
-					{{#each voitures}}
-					<div class="pilote-wrapper">
-						<img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Voiture de F1">
-						<p>{{this.voinom}}</p>
-						<p>{{this.typelibelle}}</p>
-					</div>
-					{{/each}}
-				</div>
-				{{/if}}
-			</div>
-			<div class="resizemydiv">
-			   	<div>
-			   	  <b>Nom: </b> {{detailsEcurie.ecunom}}
-			   	</div>
-			   	<div>
-		    	  <b>Directeur: </b>{{detailsEcurie.ecunomdir}} m
-		    	</div>
-		    	<div>
-		    	  <b>Adresse: </b>{{detailsEcurie.ecuadrsiege}}
-		    	</div>
-		    	<div>
-		      		<b>Pays: </b>{{pays.paynom}}
-		    	</div>
-		    	{{#if fournisseur}}
-		    		<div>
-		      			<b>Fournisseur: </b>{{fournisseur.fpnom}}
-		    		</div>
-		    	{{/if}}
-		    	{{#if sponsors}}
-		    			<div>
-		      				<b>Sponsor(s): </b>
-		    				{{#each sponsors}}
-		      					<span>{{this.sponom}} </span>
-		      				{{/each}}
-		    			</div>
-		    	{{/if}}
-			</div>
+<h1>Liste des écuries enregistrées</h1>
+{{#if detailsEcurie}}
+<div class="wrapper">
+	<div>
+		<img src="/image/ecurie/{{detailsEcurie.ecuadresseimage}}" alt="logo de l'écurie" class="circuitimg" />
+		{{#if pilotes}}
+		<p>Pilotes:</p>
+		{{#each pilotes}}
+		<p>
+			<a href="/detailsPilote/{{this.pilnum}}" class="hover">
+				{{this.pilprenom}} {{this.pilnom}}
+				<span>
+					<img src="/image/pilote/{{this.phoadresse}}" alt="photo du pilote"/>
+				</span>
+			</a>
+		</p>
+		{{/each}}
 		{{/if}}
-			<div>
-				<table class="tabpayscir">
-					{{#each listeEcurie}}
-						<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-					    	<a href="/ecuries/{{this.ecunum}}"> {{this.ecunom}}</a>
-					    </td></tr>
-					{{/each}}
-				</table>
-				<br class="myboth" />
+		{{#if voitures}}
+		<div class="wrapper">
+			{{#each voitures}}
+			<div class="pilote-wrapper">
+				<img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Voiture de F1">
+				<p>{{this.voinom}}</p>
+				<p>{{this.typelibelle}}</p>
 			</div>
+			{{/each}}
 		</div>
+		{{/if}}
+	</div>
+	<div class="resizemydiv">
+		<div>
+			<b>Nom: </b> {{detailsEcurie.ecunom}}
+		</div>
+		<div>
+			<b>Directeur: </b>{{detailsEcurie.ecunomdir}}
+		</div>
+		<div>
+			<b>Adresse: </b>{{detailsEcurie.ecuadrsiege}}
+		</div>
+		<div>
+			<b>Pays: </b>{{pays.paynom}}
+		</div>
+		{{#if fournisseur}}
+		<div>
+			<b>Fournisseur: </b>{{fournisseur.fpnom}}
+		</div>
+		{{/if}}
+		{{#if sponsors}}
+		<div>
+			<b>Sponsor(s): </b>
+			{{#each sponsors}}
+			<span>{{this.sponom}} </span>
+			{{/each}}
+		</div>
+		{{/if}}
+	</div>
+	{{/if}}
+	<div>
+		<table class="tabpayscir">
+			{{#each listeEcurie}}
+			<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+				<a href="/ecuries/{{this.ecunum}}"> {{this.ecunom}}</a>
+			</td></tr>
+			{{/each}}
+		</table>
 		<br class="myboth" />
-
+	</div>
+</div>
+<br class="myboth" />
